@@ -4,7 +4,7 @@
 	2. should return 201 when create a product  (resource.post)  --3
 	3. should contain creation uri in header location (resource.post) --5  :: 34
 	4. --------------------------------------------------
-	3. should have tried to save the creation data into database (repo.save) --5
+	3. should have tried to save the creation data into database (repo.save, mapper) --5 ::
 	3. should able to get that product after creation. (repo.findById) --5
 	4. should that one product's id is the same as the created one (repo.save, mapper, database, records; repo.findById, mapper) --15
 	5. should that one product's name, description, price are the same as the created one (repo.save, mapper, records; mapper-findById) --15
