@@ -1,0 +1,109 @@
+#tasks
+1. init project --15 :: 14.44
+2. product creation
+	2. should return 201 when create a product  (resource.post)  --3
+	3. should contain creation uri in header location (resource.post) --5  :: 34
+	4. --------------------------------------------------
+	3. should have tried to save the creation data into database (repo.save) --5
+	3. should able to get that product after creation. (repo.findById) --5
+	4. should that one product's id is the same as the created one (repo.save, mapper, database, records; repo.findById, mapper) --15
+	5. should that one product's name, description, price are the same as the created one (repo.save, mapper, records; mapper-findById) --15
+6. get all products
+	1. should return 200 when get products (resource.get) --2
+	2. should the response body contains uri info (resource.get, bean) --3
+	2. should the response body contains at least one item info (resource.get) --3
+	3. should that item contains id, name, description, price info (resource.get, Bean) --10
+	3. --------------------------------------------------
+	2. should have tried to search from database (repo.findAll) --5
+	1. should able to get a least one product if database is not empty (repo.findAll) --5
+	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10
+6. get some product
+	6. should return 200 when get some product (resource.get) --2
+	7. should the response body contains uri, id, name, description, price info (resource.get) --5
+	7. should try to search that product in database (resource.get) --3
+11. user register
+	11. should return 201 when register a new user (resource.post) --2
+	12. should return 400 when the registered name is not composed of letters and numbers, at least one (resource.post) -- 5
+	13. should include creation uri in header location (resource.post) --2
+	3. --------------------------------------------------
+	14. should have tried to save the user info into database (repo.save) --3
+	15. should able to get a user after registered (repo.findById) --2
+	16. should the user's id is the same as the saved one. (repo.save, mapper, database, record; repo.findById, mapper) --15
+	17. should the user's name is the same as the saved one (repo.save, mapper, record; mapper-findById) --8
+18. order creation
+	18. should return 201 when creating an order (resource.post) --2
+	19. should include the creation uri in header location (resource.post) --2
+	3. --------------------------------------------------
+	20. should have tried to save the order info into database (repo.save) --3
+	21. should able to get the order after created order (repo.findById) --2
+	22. should the order's id is the same as the created one (repo.save, mapper, database, record; repo.findById, mapper) --13
+	23. should the order's name, address, phone are the same as the created one (repo.save, mapper, record; mapper-findById) --13
+	24. should the order contains at least one order item (repo.findById, record)  --5
+	25. should the order item's product id is the same as what we bought. (repo.save, mapper, database, record; mapper-findById) --13
+	26. should the order item's quantity is the same as what we bought, and the item's amount is product.price * quantity. (repo.save, mapper, record; mapper-findById) --13
+27. get some order of some user
+	28. should return 200 when review some order of some user (resource.get) --2
+	29. should the response body contain uri info (resource.get) --2
+ 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, bean) --5
+ 	21. should the response body contain at least one order_item info (resource.get, bean) --2
+ 	22. should the order_item contain product_id, quantity, amount info (resource.get, bean) --2
+	3. --------------------------------------------------
+	30. should the amount of the item in that order is the price*quantity, in which price is the data when creating order (repo.save, mapper, record; mapper-findById) --15
+	30. should that order's total price is the sum of items' amounts (mapper-findAll, record) --10
+	28. should that order has a created date (mapper, record) --5
+27. get all orders of some user
+	28. should return 200 when review all orders of some user (resource.get) --2
+	29. should the response body contain uri info (resource.get) --2
+ 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, bean) --5
+	3. --------------------------------------------------
+	29. should have tried to fetch all orders from database (repo.findAll) --3
+	30. should get one order when there's one order in database (repo.findAll) --2
+	31. should the order's id is the same as the created one (repo.save, mapper, database, record; repo.findAll, mapper) --13
+	23. should the order's name, address, phone are the same as the created one (repo.save, mapper, record; repo.findAll, mapper) --13
+	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2
+	28. should the order has a created date (mapper, record) --2
+29. create payment
+	30. should return 201 when pay (resource.post) --2
+	3. --------------------------------------------------
+	31. should try to save the payment info into database (repo.save) --3
+	31. should able to get that payment after pay (resourc.post, repo.findByOrderId) --2
+	32. should the type of that payment is as expected (repo.save, mapper, database, record; repo.findByOrderId, mapper) --13
+	33. should the amount of that payment is as expected (repo.save, mapper, record; mapper-findByOrderId) --8
+34. get payment of some order
+	32. should return 200 when get payment (resourc.get) --2
+	3. --------------------------------------------------
+	33. should try to search that payment in database (repo.findByOrderId) --2
+	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5
+	35. should the response body include order_uri & payment uri (resource.get) --5
+
+#databases
+1. product: 
+	2. id
+	2. name
+	3. description
+	4. price
+2. order:
+	3. 	id
+	1. user_id
+	3. name
+	4. address
+	5. phone
+	7. created_at
+	9. pay_state
+7. order_items:
+	8. order_id
+	8. product_id
+	9. quantity
+	10. amount
+10. user:
+	11. name
+12. payments:
+	13. order_id
+	8. pay_type
+	10. pay_at
+	11. pay_amount
+
+	
+
+
+
