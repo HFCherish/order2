@@ -1,6 +1,7 @@
 package com.thoughtworks.order.web;
 
 import com.thoughtworks.order.domain.Order;
+import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
@@ -14,6 +15,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -99,5 +101,10 @@ public class OrderApiTest extends ApiSupport {
         assertThat(orderInfo.get("created_at"), is(notNullValue()));
         List orderItems = (List)orderInfo.get("order_items");
         assertThat(orderItems.size(), is(1));
+        Map orderItem = (Map)orderItems.get(0);
+        assertThat(orderItem.get("product_id").toString(), is(product.getId()));
+        assertThat((int)orderItem.get("quantity"), is(ORDER_ITEM_QUANTITY));
+        assertThat((double)orderItem.get("amount"), is(closeTo(product.getPrice(), 0.1)));
+
     }
 }
