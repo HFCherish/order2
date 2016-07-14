@@ -2,6 +2,7 @@ package com.thoughtworks.order.domain;
 
 import com.thoughtworks.order.infrastructure.records.Record;
 import com.thoughtworks.order.web.jersey.Routes;
+import org.joda.time.DateTime;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,12 +10,14 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Order implements Record{
+    DateTime createdAt;
     String id;
     String userId;
     String name;
     String address;
     String phone;
     List<OrderItem> orderItems;
+    private double totalPrice;
 
     public Order() {
         this.id = UUID.randomUUID().toString();
@@ -64,11 +67,24 @@ public class Order implements Record{
     public Map<String, Object> toRefJson(Routes routes) {
         return new HashMap<String, Object>() {{
             put("uri", routes.orderUrl(Order.this));
+            put("name", name);
+            put("address", address);
+            put("phone", phone);
+            put("total_price", totalPrice);
+            put("created_at", createdAt);
         }};
     }
 
     @Override
     public Map<String, Object> toJson(Routes routes) {
         return toRefJson(routes);
+    }
+
+    public double getTotalPrice() {
+        totalPrice = 0;
+        for(OrderItem orderItem: orderItems) {
+            totalPrice += orderItem.getAmount() * orderItem.getQuantity();
+        }
+        return totalPrice;
     }
 }

@@ -21,6 +21,7 @@
         O.name as receiverName,
         O.address as receiverAddr,
         O.phone as receiverPhone,
+        O.created_at as createdAt,
         OI.product_id as prodId,
         OI.amount as amount,
         OI.quantity as quantity

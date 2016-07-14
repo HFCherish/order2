@@ -22,6 +22,7 @@
         <result property="name" column="receiverName"/>
         <result property="address" column="receiverAddr"/>
         <result property="phone" column="receiverPhone"/>
+        <result property="createdAt" column="createdAt"/>
         <collection property="orderItems" ofType="com.thoughtworks.order.domain.OrderItem">
             <result property="productId" column="prodId" />
             <result property="quantity" column="quantity" />

@@ -12,6 +12,7 @@ import com.thoughtworks.order.support.ApiTestRunner;
 import static com.thoughtworks.order.support.TestHelper.*;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Before;
@@ -90,6 +91,12 @@ public class OrderApiTest extends ApiSupport {
 
         Map orderInfo = response.readEntity(Map.class);
         assertThat(orderInfo.get("uri").toString(), containsString(getUri));
+        assertThat(orderInfo.get("name").toString(), is(order.getName()));
+        assertThat(orderInfo.get("address").toString(), is(order.getAddress()));
+        assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
+        assertThat((double)orderInfo.get("total_price"), is(notNullValue()));
+        assertThat(orderInfo.get("created_at"), is(notNullValue()));
+
 
     }
 }
