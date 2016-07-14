@@ -72,7 +72,7 @@ public class Order implements Record{
             put("name", name);
             put("address", address);
             put("phone", phone);
-            put("total_price", totalPrice);
+            put("total_price", getTotalPrice());
             put("created_at", createdAt);
             put("order_items", orderItemsInfo);
         }};

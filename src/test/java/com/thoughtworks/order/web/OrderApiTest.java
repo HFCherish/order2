@@ -97,7 +97,7 @@ public class OrderApiTest extends ApiSupport {
         assertThat(orderInfo.get("name").toString(), is(order.getName()));
         assertThat(orderInfo.get("address").toString(), is(order.getAddress()));
         assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
-        assertThat((double)orderInfo.get("total_price"), is(notNullValue()));
+        assertThat((double)orderInfo.get("total_price"), is(order.getTotalPrice()));
         assertThat(orderInfo.get("created_at"), is(notNullValue()));
         List orderItems = (List)orderInfo.get("order_items");
         assertThat(orderItems.size(), is(1));
