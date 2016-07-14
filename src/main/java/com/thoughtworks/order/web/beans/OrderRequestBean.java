@@ -2,9 +2,11 @@ package com.thoughtworks.order.web.beans;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thoughtworks.order.domain.Order;
+import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.User;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @XmlRootElement
@@ -19,11 +21,7 @@ public class OrderRequestBean {
     String phone;
 
     @JsonProperty("order_items")
-    List<OrderItemRequestBean> orderItems;
-
-    public Order createOrder(User user) {
-        return new Order(name, address, phone, user.getId());
-    }
+    List<OrderItemRequestBean> orderItemRequestBeans;
 
     public String getName() {
         return name;
@@ -37,7 +35,7 @@ public class OrderRequestBean {
         return phone;
     }
 
-    public List<OrderItemRequestBean> getOrderItems() {
-        return orderItems;
+    public List<OrderItemRequestBean> getOrderItemRequestBeans() {
+        return orderItemRequestBeans;
     }
 }

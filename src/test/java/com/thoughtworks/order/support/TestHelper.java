@@ -1,6 +1,7 @@
 package com.thoughtworks.order.support;
 
 import com.thoughtworks.order.domain.Order;
+import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
@@ -57,13 +58,13 @@ public class TestHelper {
         return new User(name);
     }
 
-    public static Map<String, Object> orderJsonForTest() {
+    public static Map<String, Object> orderJsonForTest(String productId) {
         return new HashMap<String, Object>() {{
             put("name", "Mary");
             put("address", "beijing");
             put("phone", "708906798");
             put("order_items", Arrays.asList(new HashMap<String, Object>() {{
-                put("product_id", 1);
+                put("product_id", productId);
                 put("quantity", 2);
             }}));
         }};
@@ -71,7 +72,8 @@ public class TestHelper {
 
     public static Order OrderForTest(UserRepository userRepository, ProductRepository productRepository) {
         User user = prepareUser(userRepository);
-        return new Order("Mary", "beijing", "7057867", user.getId());
+        Product product = prepareProduct(productRepository);
+        return new Order("Mary", "beijing", "7057867", user.getId(), Arrays.asList(new OrderItem(product.getId(),2,product.getPrice())));
     }
 
     public static User prepareUser(UserRepository userRepository) {

@@ -3,6 +3,7 @@ package com.thoughtworks.order.web.jersey;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.infrastructure.records.Models;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;

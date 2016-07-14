@@ -22,7 +22,7 @@ public class User extends AssertionConcern implements Record {
 
     private void setName(String name) {
         if( !isValidName(name) ) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("the name can only be composed of letters and numbers.");
         }
         this.name = name;
     }

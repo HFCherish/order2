@@ -22,5 +22,10 @@
         <result property="name" column="receiverName"/>
         <result property="address" column="receiverAddr"/>
         <result property="phone" column="receiverPhone"/>
+        <collection property="orderItems" ofType="com.thoughtworks.order.domain.OrderItem">
+            <result property="productId" column="prodId" />
+            <result property="quantity" column="quantity" />
+            <result property="amount" column="amount" />
+        </collection>
     </resultMap>
 </mapper>

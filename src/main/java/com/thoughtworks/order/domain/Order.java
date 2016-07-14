@@ -1,5 +1,8 @@
 package com.thoughtworks.order.domain;
 
+import com.google.common.collect.Ordering;
+
+import java.util.List;
 import java.util.UUID;
 
 public class Order {
@@ -8,16 +11,19 @@ public class Order {
     String name;
     String address;
     String phone;
+    List<OrderItem> orderItems;
+
     public Order() {
         this.id = UUID.randomUUID().toString();
     }
 
-    public Order(String name, String address, String phone, String userId) {
+    public Order(String name, String address, String phone, String userId, List<OrderItem> orderItems) {
         this();
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.userId = userId;
+        setOrderItems(orderItems);
     }
 
     public String getId() {
@@ -38,5 +44,16 @@ public class Order {
 
     public String getPhone() {
         return phone;
+    }
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+//        if(orderItems == null || orderItems.size() == 0 ){
+//            throw new IllegalArgumentException("must order at least one product.");
+//        }
+        this.orderItems = orderItems;
     }
 }

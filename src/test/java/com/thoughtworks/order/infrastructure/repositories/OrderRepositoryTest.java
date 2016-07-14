@@ -38,5 +38,7 @@ public class OrderRepositoryTest {
         assertThat(fetchedOrder.getAddress(), is(order.getAddress()));
         assertThat(fetchedOrder.getPhone(), is(order.getPhone()));
         assertThat(fetchedOrder.getUserId(), is(order.getUserId()));
+
+        assertThat(fetchedOrder.getOrderItems().size(), is(1));
     }
 }

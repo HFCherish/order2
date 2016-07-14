@@ -8,6 +8,8 @@ import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.infrastructure.repositories.impl.OrderRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.ProductRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.UserRepositoryImpl;
+import com.thoughtworks.order.infrastructure.services.Impl.OrderServiceImpl;
+import com.thoughtworks.order.infrastructure.services.OrderService;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.*;
 import org.apache.ibatis.type.TypeHandler;
@@ -58,6 +60,7 @@ public class Models extends AbstractModule {
         bind(UserRepository.class).to(UserRepositoryImpl.class);
         bind(ProductRepository.class).to(ProductRepositoryImpl.class);
         bind(OrderRepository.class).to(OrderRepositoryImpl.class);
+        bind(OrderService.class).to(OrderServiceImpl.class);
     }
 
     private void bindPersistence() {

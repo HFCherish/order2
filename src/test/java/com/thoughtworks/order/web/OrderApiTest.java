@@ -1,6 +1,8 @@
 package com.thoughtworks.order.web;
 
+import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
+import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
@@ -24,13 +26,18 @@ public class OrderApiTest extends ApiSupport {
     @Inject
     UserRepository userRepository;
 
+    @Inject
+    ProductRepository productRepository;
+
     private User user;
+    private Product product;
 
     @Override
     @Before
     public void setUp() throws Exception {
         super.setUp();
         user = prepareUser(userRepository);
+        product = prepareProduct(productRepository);
     }
 
     @Test
@@ -38,7 +45,7 @@ public class OrderApiTest extends ApiSupport {
         String createUri = "users/" + user.getId() + "/orders";
         Response response = target(createUri)
                 .request()
-                .post(Entity.json(orderJsonForTest()));
+                .post(Entity.json(orderJsonForTest(product.getId())));
 
         assertThat(response.getStatus(), is(201));
         assertThat(response.getLocation().toString(), containsString(createUri));

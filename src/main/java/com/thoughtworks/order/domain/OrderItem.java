@@ -2,21 +2,27 @@ package com.thoughtworks.order.domain;
 
 public class OrderItem {
     private String productId;
-    private String quantity;
+    private int quantity;
+    private double amount;
 
     public OrderItem() {
     }
 
-    public OrderItem(String productId, String quantity) {
+    public OrderItem(String productId, int quantity, double amount) {
         this.productId = productId;
         this.quantity = quantity;
+        this.amount = amount;
     }
 
     public String getProductId() {
         return productId;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }
