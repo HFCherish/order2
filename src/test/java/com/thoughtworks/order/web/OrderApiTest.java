@@ -49,6 +49,16 @@ public class OrderApiTest extends ApiSupport {
 
         assertThat(response.getStatus(), is(201));
         assertThat(response.getLocation().toString(), containsString(createUri));
+    }
+
+    @Test
+    public void should_400_when_create_order_given_zero_order_items() {
+        String createUri = "users/" + user.getId() + "/orders";
+        Response response = target(createUri)
+                .request()
+                .post(Entity.json(orderJstonWithNoOrderItemsForTes()));
+
+        assertThat(response.getStatus(), is(400));
 
     }
 }

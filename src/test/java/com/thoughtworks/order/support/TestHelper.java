@@ -71,6 +71,15 @@ public class TestHelper {
         }};
     }
 
+    public static Map<String, Object> orderJstonWithNoOrderItemsForTes() {
+        return new HashMap<String, Object>() {{
+            put("name", "Mary");
+            put("address", "beijing");
+            put("phone", "708906798");
+            put("order_items", Arrays.asList(new HashMap<String, Object>() ));
+        }};
+    }
+
     public static Order OrderForTest(User user, Product product) {
         return new Order("Mary",
                 "beijing",
