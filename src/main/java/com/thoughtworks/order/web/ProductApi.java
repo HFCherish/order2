@@ -30,7 +30,7 @@ public class ProductApi {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Product> getAll(@Context ProductRepository productRepository) {
         List<Product> products = new ArrayList<>();
-        products.add(new Product());
+        products.add(new Product("Imran", "teacher", 1.2));
         return products;
     }
 }

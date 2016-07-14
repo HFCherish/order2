@@ -46,17 +46,11 @@ public class Product implements Record {
     @Override
     public Map<String, Object> toRefJson(Routes routes) {
         return new HashMap<String, Object>() {{
+            put("id", getId());
             put("uri", routes.productUrl(Product.this));
-//            put("id", getUserId().id());
-//            put("name", getName());
-//            put("email", getEmail());
-//            put("role", role);
-//            put("links", asList(
-//                    new HashMap<String, Object>() {{
-//                        put("rel", "self");
-//                        put("uri", routes.userUrl(User.this));
-//                    }}
-//            ));
+            put("name", getName());
+            put("description", getDescription());
+            put("price", getPrice());
         }};
     }
 

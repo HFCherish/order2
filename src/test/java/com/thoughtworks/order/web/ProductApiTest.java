@@ -50,5 +50,9 @@ public class ProductApiTest extends ApiSupport {
         assertThat(items.size(), is(1));
         Map productInfo = (Map)items.get(0);
         assertThat(productInfo.get("uri"), is(notNullValue()));
+        assertThat(productInfo.get("id"), is(notNullValue()));
+        assertThat(productInfo.get("name"), is(notNullValue()));
+        assertThat(productInfo.get("description"), is(notNullValue()));
+        assertThat(productInfo.get("price"), is(notNullValue()));
     }
 }
