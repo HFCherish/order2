@@ -31,6 +31,7 @@ public class OrderApiTest extends ApiSupport {
 
     private User user;
     private Product product;
+    private String createUri;
 
     @Override
     @Before
@@ -38,11 +39,11 @@ public class OrderApiTest extends ApiSupport {
         super.setUp();
         user = prepareUser(userRepository);
         product = prepareProduct(productRepository);
+        createUri = "users/" + user.getId() + "/orders";
     }
 
     @Test
     public void should_create_order_successful() {
-        String createUri = "users/" + user.getId() + "/orders";
         Response response = target(createUri)
                 .request()
                 .post(Entity.json(orderJsonForTest(product.getId())));
@@ -53,7 +54,6 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_400_when_create_order_given_zero_order_items() {
-        String createUri = "users/" + user.getId() + "/orders";
         Response response = target(createUri)
                 .request()
                 .post(Entity.json(orderJstonWithNoOrderItemsForTes()));
@@ -63,12 +63,19 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_400_when_create_order_given_invalid_product_id() {
-        String createUri = "users/" + user.getId() + "/orders";
         Response response = target(createUri)
                 .request()
                 .post(Entity.json(orderJsonForTest(NOT_EXIST_ID)));
 
         assertThat(response.getStatus(), is(400));
+    }
+
+    @Test
+    public void should_get_one_order_successfully() {
+        String getUri = createUri + "/" + product.getId();
+        Response response = target(getUri).request().get();
+
+        assertThat(response.getStatus(), is(200));
 
     }
 }
