@@ -11,6 +11,7 @@ import javax.ws.rs.core.Response;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
 
 @RunWith(ApiTestRunner.class)
@@ -24,6 +25,7 @@ public class UsersApiTest extends ApiSupport {
 
         final Response response = target("users/").request().post(Entity.json(userInfo));
         assertThat(response.getStatus(), is(201));
+        assertThat(response.getLocation().toString(), containsString("users/"));
     }
 
     @Test
