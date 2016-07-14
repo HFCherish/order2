@@ -1,5 +1,6 @@
 package com.thoughtworks.order.support;
 
+import com.thoughtworks.order.domain.Order;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
@@ -66,6 +67,10 @@ public class TestHelper {
                 put("quantity", 2);
             }}));
         }};
+    }
+
+    public static Order OrderForTest(UserRepository userRepository, ProductRepository productRepository) {
+        return new Order("Mary", "beijing", "7057867");
     }
 
     public static User prepareUser(UserRepository userRepository) {

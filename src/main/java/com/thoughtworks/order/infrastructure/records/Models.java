@@ -2,8 +2,10 @@ package com.thoughtworks.order.infrastructure.records;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
+import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
+import com.thoughtworks.order.infrastructure.repositories.impl.OrderRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.ProductRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.UserRepositoryImpl;
 import org.apache.ibatis.plugin.Interceptor;
@@ -55,6 +57,7 @@ public class Models extends AbstractModule {
         bindPersistence();
         bind(UserRepository.class).to(UserRepositoryImpl.class);
         bind(ProductRepository.class).to(ProductRepositoryImpl.class);
+        bind(OrderRepository.class).to(OrderRepositoryImpl.class);
     }
 
     private void bindPersistence() {
