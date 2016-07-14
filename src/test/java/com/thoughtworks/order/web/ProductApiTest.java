@@ -17,6 +17,7 @@ import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(ApiTestRunner.class)
@@ -47,5 +48,7 @@ public class ProductApiTest extends ApiSupport {
         assertThat(response.getStatus(), is(200));
         List items = response.readEntity(List.class);
         assertThat(items.size(), is(1));
+        Map productInfo = (Map)items.get(0);
+        assertThat(productInfo.get("uri"), is(notNullValue()));
     }
 }

@@ -9,9 +9,10 @@
 	5. should that one product's name, description, price are the same as the created one (resourc.post, repo.save, mapper, records; mapper-findById) --15 :: 1
 6. get all products
 	1. should return 200 when get products (resource.get) --2 :: 10
-	2. should the response body contains uri info (resource.get, bean) --3
+	2. should the response body contains at least  one item info (resource.get, record) -- 10 :: 18
+	2. should the response body contains uri info (resource.get, record) --3
 	2. should the response body contains at least one item info (resource.get) --3
-	3. should that item contains id, name, description, price info (resource.get, Bean) --10
+	3. should that item contains id, name, description, price info (resource.get, record) --10
 	3. --------------------------------------------------
 	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5
 	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10
@@ -40,17 +41,18 @@
 27. get some order of some user
 	28. should return 200 when review some order of some user (resource.get) --2
 	29. should the response body contain uri info (resource.get) --2
- 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, bean) --5
- 	21. should the response body contain at least one order_item info (resource.get, bean) --2
- 	22. should the order\_item contain product_id, quantity, amount info (resource.get, bean) --2
+ 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, record) --5
+ 	21. should the response body contain at least one order_item info (resource.get, record) --2
+ 	22. should the order\_item contain product_id, quantity, amount info (resource.get, record) --2
 	3. --------------------------------------------------
 	30. should the amount of the item in that order is the price*quantity, in which price is the data when creating order (resourc.post, repo.save, mapper, record; mapper-findById) --15
 	30. should that order's total price is the sum of items' amounts (mapper-findAll, record) --10
 	28. should that order has a created date (mapper, record) --5
 27. get all orders of some user
 	28. should return 200 when review all orders of some user (resource.get) --2
+	29. should the response body contain at least one order info. (resource.get, record)  --15
 	29. should the response body contain uri info (resource.get) --2
- 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, bean) --5
+ 	20. should the response body contain name, address, phone, total_price, created_at info (resource.get, record) --5
 	3. --------------------------------------------------
 	29. should have tried to fetch all orders from database and should get one order when there's one order in database (repo.findAll) --2
 	31. should the order's id is the same as the created one (resourc.post, repo.save, mapper, database, record; repo.findAll, mapper) --13

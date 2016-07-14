@@ -1,9 +1,11 @@
 package com.thoughtworks.order.web.jersey;
 
+import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.user.User;
 
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
+import java.util.HashMap;
 
 public class Routes {
 
@@ -19,5 +21,9 @@ public class Routes {
 
     public URI productUrl() {
         return URI.create(baseUri + "products");
+    }
+
+    public URI productUrl(Product product) {
+        return URI.create(baseUri + "products/" + product.getId());
     }
 }
