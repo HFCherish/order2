@@ -16,6 +16,7 @@ import java.util.Optional;
 import static com.thoughtworks.order.support.TestHelper.ORDER_ITEM_QUANTITY;
 import static com.thoughtworks.order.support.TestHelper.prepareProduct;
 import static com.thoughtworks.order.support.TestHelper.prepareUser;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -53,6 +54,7 @@ public class OrderRepositoryTest {
         assertThat(fetchedOrder.getPhone(), is(order.getPhone()));
         assertThat(fetchedOrder.getUserId(), is(order.getUserId()));
         assertThat(fetchedOrder.getTotalPrice(), is(order.getTotalPrice()));
+        assertThat(fetchedOrder.getCreatedAt(), is(notNullValue()));
 
         assertThat(fetchedOrder.getOrderItems().size(), is(1));
         OrderItem orderItem = fetchedOrder.getOrderItems().get(0);

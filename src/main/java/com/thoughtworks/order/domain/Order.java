@@ -53,6 +53,10 @@ public class Order implements Record{
         return orderItems;
     }
 
+    public DateTime getCreatedAt() {
+        return createdAt;
+    }
+
     private void initOrderItems(List<OrderItem> orderItems) {
         if(orderItems == null || orderItems.size() == 0 ){
             throw new IllegalArgumentException("must order at least one product.");
