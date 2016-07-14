@@ -24,6 +24,8 @@ public class ProductRepositoryTest {
         Optional<Product> fetched = productRepository.findById(product.getId());
 
         assertThat(fetched.isPresent(), is(true));
+        Product fetchedProduct = fetched.get();
+        assertThat(fetchedProduct.getId(), is(product.getId()));
 
     }
 }

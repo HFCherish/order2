@@ -16,4 +16,11 @@
         <result property="password" column="userPassword"/>
         <association property="userId" resultMap="userId"/>
     </resultMap>
+
+    <resultMap id="product" type="com.thoughtworks.order.domain.Product">
+        <id property="id" column="prodId"/>
+        <result property="name" column="prodName"/>
+        <result property="description" column="prodDescription"/>
+        <result property="price" column="prodPrice"/>
+    </resultMap>
 </mapper>
