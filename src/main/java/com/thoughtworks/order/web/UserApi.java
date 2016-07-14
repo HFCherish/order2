@@ -1,6 +1,6 @@
 package com.thoughtworks.order.web;
 
-import com.thoughtworks.order.domain.user.User;
+import com.thoughtworks.order.domain.User;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;

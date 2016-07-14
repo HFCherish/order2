@@ -21,7 +21,7 @@
 	6. should return 200 when get some product (resource.get) --2
 	7. should the response body contains uri, id, name, description, price info (resource.get) --5 :: 14
 	3. --------------------------------------------------
-	4. should return 404 when no products in db --5
+	4. should return 404 when no products in db --5 :: 5
 11. user register
 	11. should return 201 when register a new user (resource.post) --2
 	12. should return 400 when the registered name is not composed of letters and numbers, at least one (resource.post) -- 5

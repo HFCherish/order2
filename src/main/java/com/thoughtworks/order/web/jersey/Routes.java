@@ -1,11 +1,10 @@
 package com.thoughtworks.order.web.jersey;
 
 import com.thoughtworks.order.domain.Product;
-import com.thoughtworks.order.domain.user.User;
+import com.thoughtworks.order.domain.User;
 
 import javax.ws.rs.core.UriInfo;
 import java.net.URI;
-import java.util.HashMap;
 
 public class Routes {
 
@@ -16,7 +15,7 @@ public class Routes {
     }
 
     public URI userUrl(User user) {
-        return URI.create(String.format("%susers/%s", baseUri, user.getUserId().id()));
+        return URI.create(baseUri + "users/" + user.getId());
     }
 
     public URI productUrl() {

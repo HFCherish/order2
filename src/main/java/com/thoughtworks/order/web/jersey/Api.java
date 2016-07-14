@@ -3,11 +3,9 @@ package com.thoughtworks.order.web.jersey;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.thoughtworks.order.domain.user.EncryptionService;
-import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.infrastructure.records.Models;
-import com.thoughtworks.order.infrastructure.repositories.impl.MyBatisUserRepository;
-import com.thoughtworks.order.infrastructure.util.DefaultEncryptionService;
+import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
+import com.thoughtworks.order.infrastructure.repositories.impl.ProductRepositoryImpl;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -59,8 +57,9 @@ public class Api extends ResourceConfig {
         register(new AbstractBinder() {
             @Override
             protected void configure() {
-                bind(MyBatisUserRepository.class).to(UserRepository.class);
-                bind(DefaultEncryptionService.class).to(EncryptionService.class);
+                bind(ProductRepositoryImpl.class).to(ProductRepository.class);
+//                bind(UserRepositoryImpl.class).to(UserRepository.class);
+//                bind(DefaultEncryptionService.class).to(EncryptionService.class);
             }
         });
     }
