@@ -29,6 +29,6 @@ public class UserRepositoryTest {
         User fetchedUser = fetched.get();
         assertThat(fetchedUser.getId(), is(user.getId()));
         assertThat(fetchedUser.getName(), is(user.getName()));
-
     }
+
 }

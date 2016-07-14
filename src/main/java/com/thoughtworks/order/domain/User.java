@@ -17,11 +17,26 @@ public class User extends AssertionConcern implements Record {
 
     public User(String name) {
         this();
+        setName(name);
+    }
+
+    private void setName(String name) {
+        if( !isValidName(name) ) {
+            throw new IllegalArgumentException();
+        }
         this.name = name;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    private boolean isValidName(String name) {
+        return name.matches("^[A-Za-z0-9]+$");
     }
 
     @Override
@@ -35,9 +50,5 @@ public class User extends AssertionConcern implements Record {
     @Override
     public Map<String, Object> toJson(Routes routes) {
         return toRefJson(routes);
-    }
-
-    public String getId() {
-        return id;
     }
 }

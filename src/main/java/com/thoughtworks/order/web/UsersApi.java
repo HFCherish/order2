@@ -19,9 +19,6 @@ public class UsersApi {
                                @Context UserRepository userRepository,
                                @Context Routes routes) {
         String name = userInfo.get("name").toString();
-        if(!name.matches("^[A-Za-z0-9]+$")) {
-            return Response.status(Response.Status.BAD_REQUEST).build();
-        }
         userRepository.save(new User(name));
         return Response.created(routes.userUrl()).build();
     }
