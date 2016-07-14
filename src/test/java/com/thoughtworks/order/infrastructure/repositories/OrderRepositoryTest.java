@@ -32,5 +32,7 @@ public class OrderRepositoryTest {
         Optional<Order> fetched = orderRepository.findById(order.getId());
 
         assertThat(fetched.isPresent(), is(true));
+        Order fetchedOrder = fetched.get();
+//        assertThat(fetchedOrder.getId(), is(order.getId()));
     }
 }

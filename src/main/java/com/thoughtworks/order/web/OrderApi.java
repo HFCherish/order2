@@ -1,6 +1,8 @@
 package com.thoughtworks.order.web;
 
 import com.thoughtworks.order.domain.User;
+import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
+import com.thoughtworks.order.web.beans.OrderRequestBean;
 import com.thoughtworks.order.web.jersey.Routes;
 
 import javax.ws.rs.Consumes;
@@ -8,8 +10,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.Map;
 
 public class OrderApi {
 
@@ -21,8 +21,10 @@ public class OrderApi {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response buildOrder(Map<String, Object> orderInfo,
+    public Response buildOrder(OrderRequestBean orderInfo,
+                               @Context OrderRepository orderRepository,
                                @Context Routes routes) {
+        orderRepository.save(orderInfo.createOrder());
         return Response.created(routes.orderUrl(user)).build();
     }
 }
