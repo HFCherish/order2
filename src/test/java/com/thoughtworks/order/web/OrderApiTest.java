@@ -59,6 +59,16 @@ public class OrderApiTest extends ApiSupport {
                 .post(Entity.json(orderJstonWithNoOrderItemsForTes()));
 
         assertThat(response.getStatus(), is(400));
+    }
+
+    @Test
+    public void should_400_when_create_order_given_invalid_product_id() {
+        String createUri = "users/" + user.getId() + "/orders";
+        Response response = target(createUri)
+                .request()
+                .post(Entity.json(orderJsonForTest(NOT_EXIST_ID)));
+
+        assertThat(response.getStatus(), is(400));
 
     }
 }
