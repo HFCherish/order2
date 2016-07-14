@@ -33,6 +33,6 @@ public class OrderRepositoryTest {
 
         assertThat(fetched.isPresent(), is(true));
         Order fetchedOrder = fetched.get();
-//        assertThat(fetchedOrder.getId(), is(order.getId()));
+        assertThat(fetchedOrder.getId(), is(order.getId()));
     }
 }

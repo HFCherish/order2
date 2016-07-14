@@ -18,6 +18,6 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public Optional<Order> findById(String id) {
-        return Optional.ofNullable(new Order());
+        return Optional.ofNullable(orderMapper.findById(id));
     }
 }

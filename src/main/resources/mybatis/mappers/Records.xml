@@ -15,4 +15,12 @@
         <result property="description" column="prodDescription"/>
         <result property="price" column="prodPrice"/>
     </resultMap>
+
+    <resultMap id="order" type="com.thoughtworks.order.domain.Order">
+        <id property="id" column="orderId"/>
+        <result property="userId" column="userId"/>
+        <result property="name" column="receiverName"/>
+        <result property="address" column="receiverAddr"/>
+        <result property="phone" column="receiverPhone"/>
+    </resultMap>
 </mapper>
