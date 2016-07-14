@@ -22,6 +22,7 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(ApiTestRunner.class)
@@ -96,7 +97,7 @@ public class OrderApiTest extends ApiSupport {
         assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
         assertThat((double)orderInfo.get("total_price"), is(notNullValue()));
         assertThat(orderInfo.get("created_at"), is(notNullValue()));
-
-
+        List orderItems = (List)orderInfo.get("order_items");
+        assertThat(orderItems.size(), is(1));
     }
 }

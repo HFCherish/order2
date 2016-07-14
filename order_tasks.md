@@ -46,8 +46,8 @@
 27. get some order of some user
 	28. should return 200 when review some order of some user (resource.get) --8 :: 7
 	29. should the response body contain uri info (resource.get) --10 :: 20
- 	20. should the response body contain name, address, phone, total\_price, created\_at info (resource.get, record) --20
- 	21. should the response body contain at least one order_item info (resource.get, record) --2
+ 	20. should the response body contain name, address, phone, total\_price, created\_at info (resource.get, record) --20 :: 19
+ 	21. should the response body contain at least one order_item info (resource.get, record) --15
  	22. should the order\_item contain product_id, quantity, amount info (resource.get, record) --2
 	3. --------------------------------------------------
 	30. should the amount of the item in that order is the price*quantity, in which price is the data when creating order (resourc.post, repo.save, mapper, record; mapper-findById) --15

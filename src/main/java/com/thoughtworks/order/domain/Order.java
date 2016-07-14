@@ -4,10 +4,7 @@ import com.thoughtworks.order.infrastructure.records.Record;
 import com.thoughtworks.order.web.jersey.Routes;
 import org.joda.time.DateTime;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class Order implements Record{
     DateTime createdAt;
@@ -65,6 +62,11 @@ public class Order implements Record{
 
     @Override
     public Map<String, Object> toRefJson(Routes routes) {
+        List orderItemsInfo = new ArrayList();
+        for(OrderItem orderItem: orderItems) {
+            orderItemsInfo.add(orderItem.toJson(routes));
+        }
+
         return new HashMap<String, Object>() {{
             put("uri", routes.orderUrl(Order.this));
             put("name", name);
@@ -72,6 +74,7 @@ public class Order implements Record{
             put("phone", phone);
             put("total_price", totalPrice);
             put("created_at", createdAt);
+            put("order_items", orderItemsInfo);
         }};
     }
 
