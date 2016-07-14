@@ -9,10 +9,9 @@
 	5. should that one product's name, description, price are the same as the created one (resourc.post, repo.save, mapper, records; mapper-findById) --15 :: 1
 6. get all products
 	1. should return 200 when get products (resource.get) --2 :: 10
-	2. should the response body contains at least  one item info (resource.get, record) -- 10 :: 18
+	2. should the response body contains at least  one item info (resource.get, record) -- 3 :: 18
 	2. should the response body contains uri info (resource.get, record) --3 :: 14
-	2. should the response body contains at least one item info (resource.get) --3
-	3. should that item contains id, name, description, price info (resource.get, record) --10
+	3. should that item contains id, name, description, price info (resource.get, record) --10 :: 5
 	3. --------------------------------------------------
 	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5
 	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10
