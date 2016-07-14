@@ -24,7 +24,7 @@ public class OrderApi {
     public Response buildOrder(OrderRequestBean orderInfo,
                                @Context OrderRepository orderRepository,
                                @Context Routes routes) {
-        orderRepository.save(orderInfo.createOrder());
+        orderRepository.save(orderInfo.createOrder(user));
         return Response.created(routes.orderUrl(user)).build();
     }
 }

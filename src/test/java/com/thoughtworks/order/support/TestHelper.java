@@ -70,7 +70,8 @@ public class TestHelper {
     }
 
     public static Order OrderForTest(UserRepository userRepository, ProductRepository productRepository) {
-        return new Order("Mary", "beijing", "7057867");
+        User user = prepareUser(userRepository);
+        return new Order("Mary", "beijing", "7057867", user.getId());
     }
 
     public static User prepareUser(UserRepository userRepository) {
