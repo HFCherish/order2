@@ -10,6 +10,7 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 
 @RunWith(ApiTestRunner.class)
 public class ProductRepositoryTest {
@@ -26,6 +27,9 @@ public class ProductRepositoryTest {
         assertThat(fetched.isPresent(), is(true));
         Product fetchedProduct = fetched.get();
         assertThat(fetchedProduct.getId(), is(product.getId()));
+        assertThat(fetchedProduct.getName(), is(product.getName()));
+        assertThat(fetchedProduct.getDescription(), is(product.getDescription()));
+        assertThat(fetchedProduct.getPrice(), is(closeTo(product.getPrice(),0.1)));
 
     }
 }
