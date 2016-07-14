@@ -3,9 +3,9 @@ package com.thoughtworks.order.support;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
+import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class TestHelper {
     public static final String NOT_EXIST_ID = "123";
@@ -48,11 +48,29 @@ public class TestHelper {
 
     public static Map<String, Object> userJsonForTest(String name) {
         return new HashMap<String, Object>() {{
-                put("name", name);
-            }};
+            put("name", name);
+        }};
     }
 
     public static User userForTest(String name) {
         return new User(name);
+    }
+
+    public static Map<String, Object> orderJsonForTest() {
+        return new HashMap<String, Object>() {{
+            put("name", "Mary");
+            put("address", "beijing");
+            put("phone", "708906798");
+            put("order_items", Arrays.asList(new HashMap<String, Object>() {{
+                put("product_id", 1);
+                put("quantity", 2);
+            }}));
+        }};
+    }
+
+    public static User prepareUser(UserRepository userRepository) {
+        User user = userForTest(VALID_USER_NAME);
+        userRepository.save(user);
+        return user;
     }
 }

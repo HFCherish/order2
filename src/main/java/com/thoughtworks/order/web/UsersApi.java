@@ -22,4 +22,12 @@ public class UsersApi {
         userRepository.save(new User(name));
         return Response.created(routes.userUrl()).build();
     }
+
+    @Path("{userId}")
+    public UserApi getUser(@PathParam("userId") String userId,
+                           @Context UserRepository userRepository) {
+        return userRepository.findById(userId)
+                .map(UserApi::new)
+                .orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
+    }
 }
