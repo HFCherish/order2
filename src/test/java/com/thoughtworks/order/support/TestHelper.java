@@ -70,10 +70,12 @@ public class TestHelper {
         }};
     }
 
-    public static Order OrderForTest(UserRepository userRepository, ProductRepository productRepository) {
-        User user = prepareUser(userRepository);
-        Product product = prepareProduct(productRepository);
-        return new Order("Mary", "beijing", "7057867", user.getId(), Arrays.asList(new OrderItem(product.getId(),2,product.getPrice())));
+    public static Order OrderForTest(User user, Product product) {
+        return new Order("Mary",
+                "beijing",
+                "7057867",
+                user.getId(),
+                Arrays.asList(new OrderItem(product.getId(), 2, product.getPrice())));
     }
 
     public static User prepareUser(UserRepository userRepository) {
