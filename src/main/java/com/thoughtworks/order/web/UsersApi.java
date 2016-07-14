@@ -9,5 +9,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Map;
 
+@Path("users")
 public class UsersApi {
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response createUser(Map<String, Object> userInfo,
+                               @Context Routes routes) {
+        return Response.created(routes.userUrl()).build();
+    }
 }

@@ -1,6 +1,5 @@
 package com.thoughtworks.order.domain;
 
-import com.thoughtworks.order.domain.AssertionConcern;
 import com.thoughtworks.order.infrastructure.records.Record;
 import com.thoughtworks.order.web.jersey.Routes;
 
@@ -8,13 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import static java.util.Arrays.asList;
-
 public class User extends AssertionConcern implements Record {
     private String id;
     private String name;
 
-    private User() {
+    public User() {
         this.id = UUID.randomUUID().toString();
     }
 

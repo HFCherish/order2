@@ -21,12 +21,12 @@ public class UsersApiTest extends ApiSupport {
 
     @Test
     public void should_register_user_successful() throws Exception {
-//        Map<String, Object> userInfo = new HashMap<String, Object>() {{
-//            put("name", "Petrina");
-//        }};
-//
-//        final Response response = target("users/").request().post(Entity.json(userInfo));
-//        assertThat(response.getStatus(), is(201));
+        Map<String, Object> userInfo = new HashMap<String, Object>() {{
+            put("name", "Petrina");
+        }};
+
+        final Response response = target("users/").request().post(Entity.json(userInfo));
+        assertThat(response.getStatus(), is(201));
     }
 //
 //    @Test
