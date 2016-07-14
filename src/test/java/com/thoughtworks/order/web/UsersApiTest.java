@@ -2,13 +2,12 @@ package com.thoughtworks.order.web;
 
 import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
+import static com.thoughtworks.order.support.TestHelper.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,14 +20,19 @@ public class UsersApiTest extends ApiSupport {
 
     @Test
     public void should_register_user_successful() throws Exception {
-        Map<String, Object> userInfo = new HashMap<String, Object>() {{
-            put("name", "Petrina");
-        }};
+        Map<String, Object> userInfo = userJsonForTest(VALID_USER_NAME);
 
         final Response response = target("users/").request().post(Entity.json(userInfo));
         assertThat(response.getStatus(), is(201));
     }
-//
+
+    @Test
+    public void should_400_when_register_user_given_wrong_name_pattern() {
+        Response response = target("users/").request().post(Entity.json(userJsonForTest(INVALID_USER_NAME)));
+        assertThat(response.getStatus(), is(400));
+    }
+
+    //
 //    @Test
 //    public void should_400_if_id_not_valid() throws Exception {
 //        Map<String, Object> userInfo = new HashMap<String, Object>() {{

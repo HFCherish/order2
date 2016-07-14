@@ -16,6 +16,10 @@ public class UsersApi {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(Map<String, Object> userInfo,
                                @Context Routes routes) {
+        String name = userInfo.get("name").toString();
+        if(!name.matches("^[A-Za-z0-9]+$")) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
         return Response.created(routes.userUrl()).build();
     }
 }

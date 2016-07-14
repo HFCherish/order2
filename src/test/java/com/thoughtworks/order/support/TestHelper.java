@@ -9,6 +9,9 @@ import java.util.Map;
 public class TestHelper {
     public static final String NOT_EXIST_ID = "123";
     private static int auto_increment_key = 1;
+    public static final String INVALID_USER_NAME = "JKDL.JKL";
+    public static final String VALID_USER_NAME = "Petrina";
+
     public static Map<String, Object> deployment(String appName, String releaseId) {
         return new HashMap<String, Object>() {{
             put("app", String.format("http://service-api.tw.com/apps/%s", appName));
@@ -40,5 +43,11 @@ public class TestHelper {
         Product product = productForTest();
         productRepository.save(product);
         return product;
+    }
+
+    public static Map<String, Object> userJsonForTest(String name) {
+        return new HashMap<String, Object>() {{
+                put("name", name);
+            }};
     }
 }
