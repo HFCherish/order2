@@ -11,6 +11,7 @@ import java.util.*;
 
 public class TestHelper {
     public static final String NOT_EXIST_ID = "123";
+    public static final int ORDER_ITEM_QUANTITY = 2;
     private static int auto_increment_key = 1;
     public static final String INVALID_USER_NAME = "JKDL.JKL";
     public static final String VALID_USER_NAME = "Petrina";
@@ -65,7 +66,7 @@ public class TestHelper {
             put("phone", "708906798");
             put("order_items", Arrays.asList(new HashMap<String, Object>() {{
                 put("product_id", productId);
-                put("quantity", 2);
+                put("quantity", ORDER_ITEM_QUANTITY);
             }}));
         }};
     }

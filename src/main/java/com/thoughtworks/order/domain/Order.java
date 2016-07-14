@@ -49,11 +49,9 @@ public class Order {
     }
 
     private void initOrderItems(List<OrderItem> orderItems) {
-        System.out.println("*************orderItem size:" + orderItems.size());
         if(orderItems == null || orderItems.size() == 0 ){
             throw new IllegalArgumentException("must order at least one product.");
         }
         this.orderItems = orderItems;
-        System.out.println("*************this.orderItem size:" + this.orderItems.size());
     }
 }

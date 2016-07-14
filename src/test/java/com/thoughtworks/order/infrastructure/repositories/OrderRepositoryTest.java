@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import java.util.Optional;
 
+import static com.thoughtworks.order.support.TestHelper.ORDER_ITEM_QUANTITY;
 import static com.thoughtworks.order.support.TestHelper.prepareProduct;
 import static com.thoughtworks.order.support.TestHelper.prepareUser;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -55,5 +56,7 @@ public class OrderRepositoryTest {
         assertThat(fetchedOrder.getOrderItems().size(), is(1));
         OrderItem orderItem = fetchedOrder.getOrderItems().get(0);
         assertThat(orderItem.getProductId(), is(product.getId()));
+        assertThat(orderItem.getQuantity(), is(ORDER_ITEM_QUANTITY));
+        assertThat(orderItem.getAmount(), is(product.getPrice()));
     }
 }
