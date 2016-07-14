@@ -16,7 +16,7 @@
 	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5 :: 7
 	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10 :: 9
 	3. --------------------------------------------------
-	4. should return 404 when no products in db --5
+	4. should return empty when no products in db --5 :: 25
 6. get some product
 	6. should return 200 when get some product (resource.get) --2
 	7. should the response body contains uri, id, name, description, price info (resource.get) --5
@@ -64,7 +64,7 @@
 	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2
 	28. should the order has a created date (mapper, record) --2
 	3. --------------------------------------------------
-	4. should return 404 when no orders in db --5
+	4. should return empty when no orders in db --5
 29. create payment
 	30. should return 201 when pay (resource.post) --2
 	3. --------------------------------------------------
@@ -78,7 +78,7 @@
 	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5
 	35. should the response body include order_uri & payment uri (resource.get) --5
 	3. --------------------------------------------------
-	4. should return 404 when no products in db --5
+	4. should return 404 when no payment in db --5
 
 #databases
 1. product: 

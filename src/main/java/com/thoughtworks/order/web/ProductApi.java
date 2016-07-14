@@ -29,7 +29,15 @@ public class ProductApi {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Product> getAll(@Context ProductRepository productRepository) {
         return productRepository.findAll();
-//                .map(products -> products)
-//                .orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
+    }
+
+    @GET
+    @Path("{prodId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Product getProduct(@PathParam("prodId") String prodId,
+                              @Context ProductRepository productRepository) {
+        return productRepository.findById(prodId)
+                .map(product -> product)
+                .orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
     }
 }

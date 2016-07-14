@@ -42,7 +42,7 @@ public class ProductApiTest extends ApiSupport {
     }
 
     @Test
-    public void should_get_all_products_succeed() {
+    public void should_get_all_products_successful() {
         product = TestHelper.prepareProduct(productRepository);
 
         Response response = target("/products").request().get();
@@ -51,11 +51,15 @@ public class ProductApiTest extends ApiSupport {
         List items = response.readEntity(List.class);
         assertThat(items.size(), is(1));
         Map productInfo = (Map)items.get(0);
-        assertThat(productInfo.get("uri").toString(), containsString("/products/" + product.getId()));
-        assertThat(productInfo.get("id"), is(product.getId()));
-        assertThat(productInfo.get("name"), is(product.getName()));
-        assertThat(productInfo.get("description"), is(product.getDescription()));
-        assertThat((double)productInfo.get("price"), is(closeTo(product.getPrice(), 0.1)));
+        verify_same_product_info_in_response(productInfo, product);
+    }
+
+    private void verify_same_product_info_in_response(Map productInfo, Product product) {
+        assertThat(productInfo.get("uri").toString(), containsString("/products/" + this.product.getId()));
+        assertThat(productInfo.get("id"), is(this.product.getId()));
+        assertThat(productInfo.get("name"), is(this.product.getName()));
+        assertThat(productInfo.get("description"), is(this.product.getDescription()));
+        assertThat((double)productInfo.get("price"), is(closeTo(this.product.getPrice(), 0.1)));
     }
 
     @Test
@@ -65,5 +69,15 @@ public class ProductApiTest extends ApiSupport {
         assertThat(response.getStatus(), is(200));
         List items = response.readEntity(List.class);
         assertThat(items.size(), is(0));
+    }
+
+    @Test
+    public void should_get_one_product_successful() {
+        product = TestHelper.prepareProduct(productRepository);
+
+        Response response = target("/products/" + product.getId()).request().get();
+
+        assertThat(response.getStatus(), is(200));
+        verify_same_product_info_in_response(response.readEntity(Map.class), product);
     }
 }
