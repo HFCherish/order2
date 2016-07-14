@@ -1,7 +1,9 @@
 package com.thoughtworks.order.web;
 
+import com.thoughtworks.order.domain.Order;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
+import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.support.ApiSupport;
@@ -19,6 +21,7 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.util.Map;
 
 @RunWith(ApiTestRunner.class)
 public class OrderApiTest extends ApiSupport {
@@ -28,6 +31,9 @@ public class OrderApiTest extends ApiSupport {
 
     @Inject
     ProductRepository productRepository;
+
+    @Inject
+    OrderRepository orderRepository;
 
     private User user;
     private Product product;
@@ -72,10 +78,18 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_get_one_order_successfully() {
-        String getUri = createUri + "/" + product.getId();
+        //given
+        Order order = prepareOrder(user, product, orderRepository);
+        String getUri = createUri + "/" + order.getId();
+
+        //when
         Response response = target(getUri).request().get();
 
+        //then
         assertThat(response.getStatus(), is(200));
+
+        Map orderInfo = response.readEntity(Map.class);
+        assertThat(orderInfo.get("uri").toString(), containsString(getUri));
 
     }
 }

@@ -34,7 +34,10 @@ public class OrderApi {
     @GET
     @Path("{orderId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Order getOrder(@PathParam("orderId") String orderId) {
-        return new Order();
+    public Order getOrder(@PathParam("orderId") String orderId,
+                          @Context OrderRepository orderRepository) {
+        return orderRepository.findById(orderId)
+                .map(order -> order)
+                .orElseThrow(() -> new WebApplicationException());
     }
 }

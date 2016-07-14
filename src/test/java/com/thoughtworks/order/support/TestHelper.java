@@ -4,6 +4,7 @@ import com.thoughtworks.order.domain.Order;
 import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
+import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 
@@ -59,6 +60,12 @@ public class TestHelper {
         return new User(name);
     }
 
+    public static User prepareUser(UserRepository userRepository) {
+        User user = userForTest(VALID_USER_NAME);
+        userRepository.save(user);
+        return user;
+    }
+
     public static Map<String, Object> orderJsonForTest(String productId) {
         return new HashMap<String, Object>() {{
             put("name", "Mary");
@@ -76,11 +83,11 @@ public class TestHelper {
             put("name", "Mary");
             put("address", "beijing");
             put("phone", "708906798");
-            put("order_items", Arrays.asList(new HashMap<String, Object>() ));
+            put("order_items", Arrays.asList(new HashMap<String, Object>()));
         }};
     }
 
-    public static Order OrderForTest(User user, Product product) {
+    public static Order orderForTest(User user, Product product) {
         return new Order("Mary",
                 "beijing",
                 "7057867",
@@ -88,9 +95,10 @@ public class TestHelper {
                 Arrays.asList(new OrderItem(product.getId(), 2, product.getPrice())));
     }
 
-    public static User prepareUser(UserRepository userRepository) {
-        User user = userForTest(VALID_USER_NAME);
-        userRepository.save(user);
-        return user;
+    public static Order prepareOrder(User user, Product product, OrderRepository orderRepository) {
+        Order order = orderForTest(user, product);
+        orderRepository.save(order);
+        return order;
     }
+
 }

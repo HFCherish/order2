@@ -40,7 +40,7 @@ public class OrderRepositoryTest {
 
     @Test
     public void should_save_and_get_order() {
-        Order order = TestHelper.OrderForTest(user, product);
+        Order order = TestHelper.orderForTest(user, product);
 
         orderRepository.save(order);
         Optional<Order> fetched = orderRepository.findById(order.getId());

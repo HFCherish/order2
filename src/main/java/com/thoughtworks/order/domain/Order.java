@@ -1,9 +1,14 @@
 package com.thoughtworks.order.domain;
 
+import com.thoughtworks.order.infrastructure.records.Record;
+import com.thoughtworks.order.web.jersey.Routes;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-public class Order {
+public class Order implements Record{
     String id;
     String userId;
     String name;
@@ -53,5 +58,17 @@ public class Order {
             throw new IllegalArgumentException("must order at least one product.");
         }
         this.orderItems = orderItems;
+    }
+
+    @Override
+    public Map<String, Object> toRefJson(Routes routes) {
+        return new HashMap<String, Object>() {{
+            put("uri", routes.orderUrl(Order.this));
+        }};
+    }
+
+    @Override
+    public Map<String, Object> toJson(Routes routes) {
+        return toRefJson(routes);
     }
 }
