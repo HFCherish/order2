@@ -6,6 +6,7 @@ import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
 
 import static com.thoughtworks.order.support.TestHelper.*;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -34,11 +35,13 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_create_order_successful() {
-        Response response = target("users/" + user.getId() + "/orders")
+        String createUri = "users/" + user.getId() + "/orders";
+        Response response = target(createUri)
                 .request()
                 .post(Entity.json(orderJsonForTest()));
 
         assertThat(response.getStatus(), is(201));
+        assertThat(response.getLocation().toString(), containsString(createUri));
 
     }
 }
