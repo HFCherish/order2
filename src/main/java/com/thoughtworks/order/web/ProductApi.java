@@ -20,10 +20,7 @@ public class ProductApi {
     public Response create(Map<String, Object> prodInfo,
                            @Context Routes routes,
                            @Context ProductRepository productRepository) {
-        Product product = new Product();
-        product.setName(prodInfo.get("name").toString());
-        product.setDescription(prodInfo.get("description").toString());
-        product.setPrice((double)prodInfo.get("price"));
+        Product product = new Product(prodInfo.get("name").toString(), prodInfo.get("description").toString(), (double) prodInfo.get("price"));
 
         productRepository.save(product);
         return Response.created(routes.productUrl()).build();
