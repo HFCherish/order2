@@ -1,7 +1,9 @@
 package com.thoughtworks.order.support;
 
+import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.user.User;
 import com.thoughtworks.order.domain.user.UserId;
+import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.domain.user.UserRole;
 
@@ -49,5 +51,15 @@ public class TestHelper {
             put("id", user.getUserId().id());
             put("role", user.getRole());
         }};
+    }
+
+    public static Product productForTest() {
+        return new Product("Imran", "teacher", 1.1);
+    }
+
+    public static Product prepareProduct(ProductRepository productRepository) {
+        Product product = productForTest();
+        productRepository.save(product);
+        return product;
     }
 }

@@ -2,6 +2,7 @@ package com.thoughtworks.order.infrastructure.repositories;
 
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.support.ApiTestRunner;
+import com.thoughtworks.order.support.TestHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,7 +20,7 @@ public class ProductRepositoryTest {
 
     @Test
     public void should_save_product() {
-        Product product = new Product("Imran", "teacher", 1.1);
+        Product product = TestHelper.productForTest();
 
         productRepository.save(product);
         Optional<Product> fetched = productRepository.findById(product.getId());
@@ -32,4 +33,5 @@ public class ProductRepositoryTest {
         assertThat(fetchedProduct.getPrice(), is(closeTo(product.getPrice(),0.1)));
 
     }
+
 }
