@@ -1,6 +1,7 @@
 package com.thoughtworks.order.support;
 
 import com.thoughtworks.order.domain.Product;
+import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 
 import java.util.HashMap;
@@ -49,5 +50,9 @@ public class TestHelper {
         return new HashMap<String, Object>() {{
                 put("name", name);
             }};
+    }
+
+    public static User userForTest(String name) {
+        return new User(name);
     }
 }

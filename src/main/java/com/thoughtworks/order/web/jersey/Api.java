@@ -5,7 +5,9 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.thoughtworks.order.infrastructure.records.Models;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
+import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.infrastructure.repositories.impl.ProductRepositoryImpl;
+import com.thoughtworks.order.infrastructure.repositories.impl.UserRepositoryImpl;
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -54,14 +56,6 @@ public class Api extends ResourceConfig {
         register(CORSResponseFilter.class);
         register(OpenSessionInViewRequestFilter.class);
         register(OpenSessionInViewResponseFilter.class);
-        register(new AbstractBinder() {
-            @Override
-            protected void configure() {
-                bind(ProductRepositoryImpl.class).to(ProductRepository.class);
-//                bind(UserRepositoryImpl.class).to(UserRepository.class);
-//                bind(DefaultEncryptionService.class).to(EncryptionService.class);
-            }
-        });
     }
 
     private void bridge(ServiceLocator serviceLocator, Injector injector) {
