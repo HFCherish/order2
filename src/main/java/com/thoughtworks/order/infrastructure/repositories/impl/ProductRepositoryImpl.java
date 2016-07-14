@@ -25,6 +25,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Optional<List<Product>> findAll() {
-        return Optional.ofNullable(new ArrayList<>());
+        return Optional.ofNullable(productMapper.findAll());
     }
 }

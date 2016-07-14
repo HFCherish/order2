@@ -13,7 +13,7 @@
 	2. should the response body contains uri info (resource.get, record) --3 :: 14
 	3. should that item contains id, name, description, price info (resource.get, record) --10 :: 5
 	3. --------------------------------------------------
-	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5
+	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5 :: 7
 	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10
 6. get some product
 	6. should return 200 when get some product (resource.get) --2

@@ -29,6 +29,10 @@ public class ProductRepositoryTest {
 
         assertThat(fetched.isPresent(), is(true));
         Product fetchedProduct = fetched.get();
+        verifySameProduct(fetchedProduct, product);
+    }
+
+    private void verifySameProduct(Product fetchedProduct, Product product) {
         assertThat(fetchedProduct.getId(), is(product.getId()));
         assertThat(fetchedProduct.getName(), is(product.getName()));
         assertThat(fetchedProduct.getDescription(), is(product.getDescription()));
@@ -42,6 +46,7 @@ public class ProductRepositoryTest {
         Optional<List<Product>> fetched = productRepository.findAll();
 
         assertThat(fetched.isPresent(), is(true));
-
+        assertThat(fetched.get().size(), is(1));
+        verifySameProduct(fetched.get().get(0), product);
     }
 }
