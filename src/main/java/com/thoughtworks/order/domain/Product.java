@@ -1,8 +1,12 @@
 package com.thoughtworks.order.domain;
 
+import com.thoughtworks.order.infrastructure.records.Record;
+import com.thoughtworks.order.web.jersey.Routes;
+
+import java.util.Map;
 import java.util.UUID;
 
-public class Product {
+public class Product implements Record {
     String id;
     String name;
     String description;
@@ -33,5 +37,15 @@ public class Product {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public Map<String, Object> toRefJson(Routes routes) {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> toJson(Routes routes) {
+        return null;
     }
 }

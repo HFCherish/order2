@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,6 +45,7 @@ public class ProductApiTest extends ApiSupport {
         Response response = target("/products").request().get();
 
         assertThat(response.getStatus(), is(200));
-
+        List items = response.readEntity(List.class);
+        assertThat(items.size(), is(1));
     }
 }

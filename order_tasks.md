@@ -8,7 +8,7 @@
 	4. should that one product's id is the same as the created one (resourc.post, repo.save, mapper, database, records; repo.findById, mapper) --15 :: 26
 	5. should that one product's name, description, price are the same as the created one (resourc.post, repo.save, mapper, records; mapper-findById) --15 :: 1
 6. get all products
-	1. should return 200 when get products (resource.get) --2
+	1. should return 200 when get products (resource.get) --2 :: 10
 	2. should the response body contains uri info (resource.get, bean) --3
 	2. should the response body contains at least one item info (resource.get) --3
 	3. should that item contains id, name, description, price info (resource.get, Bean) --10
