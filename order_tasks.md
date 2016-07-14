@@ -35,7 +35,7 @@
 	19. should include the creation uri in header location (resource.post) --2 :: 7 
 	3. --------------------------------------------------
 	20. should have tried to save the order info into database and should able to get the order after created order (repo.findById) --2 :: 16
-	22. should the order's id is the same as the created one (resourc.post, repo.save, mapper, database, record; repo.findById, mapper) --13
+	22. should the order's id is the same as the created one (resourc.post, repo.save, mapper, database, record; repo.findById, mapper) --13 :: 60
 	23. should the order's name, address, phone are the same as the created one (resourc.post, repo.save, mapper, record; mapper-findById) --13
 	24. should the order contains at least one order item (repo.findById, record)  --5
 	25. should the order item's product id is the same as what we bought. (resourc.post, repo.save, mapper, database, record; mapper-findById) --13
