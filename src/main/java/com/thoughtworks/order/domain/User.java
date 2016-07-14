@@ -17,10 +17,10 @@ public class User extends AssertionConcern implements Record {
 
     public User(String name) {
         this();
-        setName(name);
+        initName(name);
     }
 
-    private void setName(String name) {
+    private void initName(String name) {
         if( !isValidName(name) ) {
             throw new IllegalArgumentException("the name can only be composed of letters and numbers.");
         }

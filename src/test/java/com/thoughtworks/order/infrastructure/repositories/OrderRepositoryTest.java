@@ -1,7 +1,6 @@
 package com.thoughtworks.order.infrastructure.repositories;
 
 import com.thoughtworks.order.domain.Order;
-import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.support.ApiTestRunner;
 import com.thoughtworks.order.support.TestHelper;
 import org.junit.Test;
