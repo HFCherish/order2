@@ -18,7 +18,6 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(ApiTestRunner.class)
@@ -30,7 +29,7 @@ public class ProductApiTest extends ApiSupport {
 
     @Test
     public void should_create_product() {
-        Map<String, Object> prodInfo = new HashMap(){{
+        Map<String, Object> prodInfo = new HashMap() {{
             put("name", "Imran");
             put("description", "teacher");
             put("price", 1.1);
@@ -50,7 +49,7 @@ public class ProductApiTest extends ApiSupport {
         assertThat(response.getStatus(), is(200));
         List items = response.readEntity(List.class);
         assertThat(items.size(), is(1));
-        Map productInfo = (Map)items.get(0);
+        Map productInfo = (Map) items.get(0);
         verify_same_product_info_in_response(productInfo, product);
     }
 
@@ -59,7 +58,7 @@ public class ProductApiTest extends ApiSupport {
         assertThat(productInfo.get("id"), is(this.product.getId()));
         assertThat(productInfo.get("name"), is(this.product.getName()));
         assertThat(productInfo.get("description"), is(this.product.getDescription()));
-        assertThat((double)productInfo.get("price"), is(closeTo(this.product.getPrice(), 0.1)));
+        assertThat((double) productInfo.get("price"), is(closeTo(this.product.getPrice(), 0.1)));
     }
 
     @Test
@@ -79,5 +78,13 @@ public class ProductApiTest extends ApiSupport {
 
         assertThat(response.getStatus(), is(200));
         verify_same_product_info_in_response(response.readEntity(Map.class), product);
+    }
+
+    @Test
+    public void should_return_404_when_get_one_product_given_wrong_id() {
+        Response response = target("/products/" + TestHelper.NOT_EXIST_ID).request().get();
+
+        assertThat(response.getStatus(), is(404));
+
     }
 }

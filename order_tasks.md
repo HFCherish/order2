@@ -19,7 +19,7 @@
 	4. should return empty when no products in db --5 :: 25
 6. get some product
 	6. should return 200 when get some product (resource.get) --2
-	7. should the response body contains uri, id, name, description, price info (resource.get) --5
+	7. should the response body contains uri, id, name, description, price info (resource.get) --5 :: 14
 	3. --------------------------------------------------
 	4. should return 404 when no products in db --5
 11. user register

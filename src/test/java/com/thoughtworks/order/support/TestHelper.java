@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestHelper {
+    public static final String NOT_EXIST_ID = "123";
     private static int auto_increment_key = 1;
     public static Map<String, Object> deployment(String appName, String releaseId) {
         return new HashMap<String, Object>() {{
