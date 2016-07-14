@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.closeTo;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.core.Is.is;
@@ -25,6 +26,7 @@ public class ProductApiTest extends ApiSupport {
 
     @Inject
     ProductRepository productRepository;
+    private Product product;
 
     @Test
     public void should_create_product() {
@@ -40,8 +42,8 @@ public class ProductApiTest extends ApiSupport {
     }
 
     @Test
-    public void should_get_all_products() {
-        Product product = TestHelper.prepareProduct(productRepository);
+    public void should_get_all_products_succeed() {
+        product = TestHelper.prepareProduct(productRepository);
 
         Response response = target("/products").request().get();
 
@@ -49,10 +51,19 @@ public class ProductApiTest extends ApiSupport {
         List items = response.readEntity(List.class);
         assertThat(items.size(), is(1));
         Map productInfo = (Map)items.get(0);
-        assertThat(productInfo.get("uri"), is(notNullValue()));
-        assertThat(productInfo.get("id"), is(notNullValue()));
-        assertThat(productInfo.get("name"), is(notNullValue()));
-        assertThat(productInfo.get("description"), is(notNullValue()));
-        assertThat(productInfo.get("price"), is(notNullValue()));
+        assertThat(productInfo.get("uri").toString(), containsString("/products/" + product.getId()));
+        assertThat(productInfo.get("id"), is(product.getId()));
+        assertThat(productInfo.get("name"), is(product.getName()));
+        assertThat(productInfo.get("description"), is(product.getDescription()));
+        assertThat((double)productInfo.get("price"), is(closeTo(product.getPrice(), 0.1)));
+    }
+
+    @Test
+    public void should_return_nothing_when_get_all_products_given_empty_databases() {
+        Response response = target("/products").request().get();
+
+        assertThat(response.getStatus(), is(200));
+        List items = response.readEntity(List.class);
+        assertThat(items.size(), is(0));
     }
 }

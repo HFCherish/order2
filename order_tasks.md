@@ -14,11 +14,14 @@
 	3. should that item contains id, name, description, price info (resource.get, record) --10 :: 5
 	3. --------------------------------------------------
 	2. should have tried to search from database and should able to get a least one product if database is not empty (repo.findAll) --5 :: 7
-	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10
+	3. should that one product's id, name, description, price are the same as expected (mapper-findAll) --10 :: 9
+	3. --------------------------------------------------
+	4. should return 404 when no products in db --5
 6. get some product
 	6. should return 200 when get some product (resource.get) --2
 	7. should the response body contains uri, id, name, description, price info (resource.get) --5
-	7. should try to search that product in database (resource.get) --3
+	3. --------------------------------------------------
+	4. should return 404 when no products in db --5
 11. user register
 	11. should return 201 when register a new user (resource.post) --2
 	12. should return 400 when the registered name is not composed of letters and numbers, at least one (resource.post) -- 5
@@ -47,6 +50,8 @@
 	30. should the amount of the item in that order is the price*quantity, in which price is the data when creating order (resourc.post, repo.save, mapper, record; mapper-findById) --15
 	30. should that order's total price is the sum of items' amounts (mapper-findAll, record) --10
 	28. should that order has a created date (mapper, record) --5
+	3. --------------------------------------------------
+	4. should return 404 when no order in db --5
 27. get all orders of some user
 	28. should return 200 when review all orders of some user (resource.get) --2
 	29. should the response body contain at least one order info. (resource.get, record)  --15
@@ -58,6 +63,8 @@
 	23. should the order's name, address, phone are the same as the created one (resourc.post, repo.save, mapper, record; repo.findAll, mapper) --13
 	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2
 	28. should the order has a created date (mapper, record) --2
+	3. --------------------------------------------------
+	4. should return 404 when no orders in db --5
 29. create payment
 	30. should return 201 when pay (resource.post) --2
 	3. --------------------------------------------------
@@ -70,6 +77,8 @@
 	33. should try to search that payment in database (repo.findByOrderId) --2
 	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5
 	35. should the response body include order_uri & payment uri (resource.get) --5
+	3. --------------------------------------------------
+	4. should return 404 when no products in db --5
 
 #databases
 1. product: 

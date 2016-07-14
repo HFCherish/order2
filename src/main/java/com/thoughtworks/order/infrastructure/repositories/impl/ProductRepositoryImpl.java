@@ -5,7 +5,6 @@ import com.thoughtworks.order.infrastructure.mybatis.mappers.ProductMapper;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +23,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<List<Product>> findAll() {
-        return Optional.ofNullable(productMapper.findAll());
+    public List<Product> findAll() {
+        return productMapper.findAll();
     }
 }

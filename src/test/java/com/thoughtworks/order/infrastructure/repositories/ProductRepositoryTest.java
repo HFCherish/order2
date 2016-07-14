@@ -43,10 +43,9 @@ public class ProductRepositoryTest {
     public void should_get_all_products() {
         product = TestHelper.prepareProduct(productRepository);
 
-        Optional<List<Product>> fetched = productRepository.findAll();
+        List<Product> fetched = productRepository.findAll();
 
-        assertThat(fetched.isPresent(), is(true));
-        assertThat(fetched.get().size(), is(1));
-        verifySameProduct(fetched.get().get(0), product);
+        assertThat(fetched.size(), is(1));
+        verifySameProduct(fetched.get(0), product);
     }
 }

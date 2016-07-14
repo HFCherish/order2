@@ -10,5 +10,5 @@ public interface ProductRepository {
 
     Optional<Product> findById(String id);
 
-    Optional<List<Product>> findAll();
+    List<Product> findAll();
 }
