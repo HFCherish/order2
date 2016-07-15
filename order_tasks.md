@@ -83,7 +83,7 @@
 	3. --------------------------------------------------
 	33. should try to search that payment in database (repo.findByOrderId) --2
 	3. --------------------------------------------------
-	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5
+	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5 :: 6
 	4. should return 404 when no payment in db --5
 
 #databases
