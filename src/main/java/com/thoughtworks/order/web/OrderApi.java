@@ -12,6 +12,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderApi {
 
@@ -40,4 +42,13 @@ public class OrderApi {
                 .map(order -> order)
                 .orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Order> getOrder(@Context OrderRepository orderRepository) {
+//        return orderRepository.findAllOfUser(user.getId());
+        return new ArrayList<>();
+    }
+
+
 }
