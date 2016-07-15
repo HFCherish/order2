@@ -59,7 +59,7 @@
 	28. should return 200 when review all orders of some user (resource.get) --2 :: 10
 	29. should the response body contain at least one order info. (resource.get, record)  --15 :: 7
 	29. should the response body contain uri info (resource.get) --5
- 	20. should the response body contain name, address, phone, total\_price, created\_at info (resource.get, record) --5
+ 	20. should the response body contain name, address, phone, total\_price info (resource.get, record) --5
  	21. should the response body not contain order items info - 15
 	3. --------------------------------------------------
 	29. should have tried to fetch all orders from database and should get one order when there's one order in database (repo.findAll) --2
@@ -68,6 +68,7 @@
 	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2
 	28. should the order has a created date (mapper, record) --2
 	3. --------------------------------------------------
+	4. should the response body contain created\_at info when get all orders successfully -- 2
 	4. should return empty when no orders in db --5
 29. create payment
 	30. should return 201 when pay (resource.post) --2

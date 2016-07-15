@@ -8,14 +8,6 @@ import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
-
-import static com.thoughtworks.order.support.TestHelper.*;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.number.IsCloseTo.closeTo;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,6 +17,11 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.Map;
+
+import static com.thoughtworks.order.support.TestHelper.*;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 
 @RunWith(ApiTestRunner.class)
 public class OrderApiTest extends ApiSupport {
@@ -141,6 +138,11 @@ public class OrderApiTest extends ApiSupport {
         List orders = response.readEntity(List.class);
         assertThat(orders.size(), is(1));
         Map orderInfo = (Map)orders.get(0);
-
+//        verifyBasicOrderInfoInResponse(order, ordersUri + "/" + order.getId(), orderInfo);
+        assertThat(orderInfo.get("uri").toString(), containsString(ordersUri));
+        assertThat(orderInfo.get("name").toString(), is("Mary"));
+        assertThat(orderInfo.get("address").toString(), is("beijing"));
+        assertThat(orderInfo.get("phone").toString(), is("7057867"));
+        assertThat((double)orderInfo.get("total_price"), is(6.4));
     }
 }
