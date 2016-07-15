@@ -92,19 +92,26 @@ public class OrderApiTest extends ApiSupport {
         assertThat(response.getStatus(), is(200));
 
         Map orderInfo = response.readEntity(Map.class);
-        assertThat(orderInfo.get("uri").toString(), containsString(getUri));
-        assertThat(orderInfo.get("name").toString(), is(order.getName()));
-        assertThat(orderInfo.get("address").toString(), is(order.getAddress()));
-        assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
-        assertThat((double)orderInfo.get("total_price"), is(order.getTotalPrice()));
-        assertThat(orderInfo.get("created_at"), is(notNullValue()));
+        verifyBasicOrderInfoInResponse(order, getUri, orderInfo);
+        verifyOrderItemsInfoInResponseBody(orderInfo);
+    }
 
+    public void verifyOrderItemsInfoInResponseBody(Map orderInfo) {
         List orderItems = (List)orderInfo.get("order_items");
         assertThat(orderItems.size(), is(1));
         Map orderItem = (Map)orderItems.get(0);
         assertThat(orderItem.get("product_id").toString(), is(product.getId()));
         assertThat((int)orderItem.get("quantity"), is(ORDER_ITEM_QUANTITY));
         assertThat((double)orderItem.get("amount"), is(closeTo(product.getPrice(), 0.1)));
+    }
+
+    public void verifyBasicOrderInfoInResponse(Order order, String getUri, Map orderInfo) {
+        assertThat(orderInfo.get("uri").toString(), containsString(getUri));
+        assertThat(orderInfo.get("name").toString(), is(order.getName()));
+        assertThat(orderInfo.get("address").toString(), is(order.getAddress()));
+        assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
+        assertThat((double)orderInfo.get("total_price"), is(order.getTotalPrice()));
+        assertThat(orderInfo.get("created_at"), is(notNullValue()));
     }
 
     @Test
@@ -133,6 +140,7 @@ public class OrderApiTest extends ApiSupport {
 
         List orders = response.readEntity(List.class);
         assertThat(orders.size(), is(1));
+        Map orderInfo = (Map)orders.get(0);
 
     }
 }
