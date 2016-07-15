@@ -32,10 +32,17 @@ public class Routes {
     }
 
     public URI orderUrl(User user) {
-        return URI.create(baseUri + "users/" + user.getId() + "/orders");
+        return URI.create(baseUri + baseOrderUrlString(user.getId()));
+    }
+
+    public String baseOrderUrlString(String userId) {
+        return "users/" + userId + "/orders";
     }
 
     public URI orderUrl(Order order) {
-        return URI.create(baseUri + "users/" + order.getUserId() + "/orders/" + order.getId());
+        return URI.create(baseUri + baseOrderUrlString(order.getUserId()) + "/" + order.getId());
     }
+
+
+
 }

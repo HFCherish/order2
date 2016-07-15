@@ -3,13 +3,13 @@ package com.thoughtworks.order.web;
 import com.thoughtworks.order.domain.Order;
 import com.thoughtworks.order.domain.PayType;
 import com.thoughtworks.order.domain.Payment;
+import com.thoughtworks.order.web.beans.PaymentResponseData;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.ws.rs.core.*;
 import java.net.URI;
 
 public class PaymentApi {
@@ -27,7 +27,7 @@ public class PaymentApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Payment getPay() {
-        return new Payment(order.getId(), PayType.CASH, 100);
+    public PaymentResponseData getPay(@Context UriInfo uriInfo) {
+        return new PaymentResponseData(new Payment(order.getId(), PayType.CASH, 100), uriInfo);
     }
 }

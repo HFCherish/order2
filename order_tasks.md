@@ -78,8 +78,8 @@
 	33. should the amount of that payment is as expected (resourc.post, repo.save, mapper, record; mapper-findByOrderId) --8
 34. get payment of some order
 	32. should return 200 when get payment (resourc.get) --10
-	33. should the response body include pay type info -- 15
-	35. should the response body include amount, order_uri & payment uri (resource.get) --5
+	33. should the response body include pay type info -- 15 :: 11
+	35. should the response body include amount, order_uri & payment uri (resource.get) --12
 	3. --------------------------------------------------
 	33. should try to search that payment in database (repo.findByOrderId) --2
 	3. --------------------------------------------------

@@ -9,6 +9,7 @@ import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
 import static com.thoughtworks.order.support.TestHelper.*;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -38,6 +39,7 @@ public class PaymentApiTest extends ApiSupport {
 
     private Order order;
     private String paymentUri;
+    private String orderUri;
 
     @Override
     @Before
@@ -48,7 +50,8 @@ public class PaymentApiTest extends ApiSupport {
                 prepareUser(userRepository),
                 prepareProduct(productRepository),
                 orderRepository);
-        paymentUri = "users/" + order.getUserId() + "/orders/" + order.getId() +"/payment";
+        orderUri = "users/" + order.getUserId() + "/orders/" + order.getId();
+        paymentUri = orderUri + "/payment";
     }
 
     @Test
@@ -68,5 +71,8 @@ public class PaymentApiTest extends ApiSupport {
 
         Map paymentInfo = response.readEntity(Map.class);
         assertThat(paymentInfo.get("pay_type"), is(payment.getType()));
+        assertThat((double)paymentInfo.get("amount"), is(payment.getAmount()));
+        assertThat(paymentInfo.get("order_uri").toString(), containsString(orderUri));
+        assertThat(paymentInfo.get("uri").toString(), containsString(paymentUri));
     }
 }
