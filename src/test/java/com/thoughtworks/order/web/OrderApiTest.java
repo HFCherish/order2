@@ -144,5 +144,6 @@ public class OrderApiTest extends ApiSupport {
         assertThat(orderInfo.get("address").toString(), is("beijing"));
         assertThat(orderInfo.get("phone").toString(), is("7057867"));
         assertThat((double)orderInfo.get("total_price"), is(6.4));
+        assertThat(orderInfo.get("order_items"), is(nullValue()));
     }
 }

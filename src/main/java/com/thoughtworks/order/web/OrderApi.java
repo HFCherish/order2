@@ -7,6 +7,7 @@ import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.services.OrderService;
 import com.thoughtworks.order.web.beans.OrderRequestBean;
+import com.thoughtworks.order.web.beans.OrdersResponseData;
 import com.thoughtworks.order.web.jersey.Routes;
 
 import javax.ws.rs.*;
@@ -47,13 +48,13 @@ public class OrderApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Order> getOrder(@Context OrderRepository orderRepository) {
+    public List<OrdersResponseData> getOrder(@Context OrderRepository orderRepository) {
 //        return orderRepository.findAllOfUser(user.getId());
-        return Arrays.asList(new Order("Mary",
+        return Arrays.asList(new OrdersResponseData(new Order("Mary",
                 "beijing",
                 "7057867",
                 user.getId(),
-                Arrays.asList(new OrderItem("123", 2, 3.2))));
+                Arrays.asList(new OrderItem("123", 2, 3.2)))));
     }
 
 
