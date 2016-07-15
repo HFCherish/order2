@@ -68,8 +68,8 @@
 	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2
 	28. should the order has a created date (mapper, record) --2 :: 8
 	3. --------------------------------------------------
-	4. should the response body contain created\_at info when get all orders successfully -- 2
-	4. should return empty when no orders in db --5
+	4. should the response body contain created\_at info when get all orders successfully -- 2 :: 10
+	4. should return empty when no orders in db --10
 29. create payment
 	30. should return 201 when pay (resource.post) --2
 	3. --------------------------------------------------
