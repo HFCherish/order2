@@ -2,6 +2,7 @@ package com.thoughtworks.order.web;
 
 import com.sun.org.glassfish.external.probe.provider.annotations.ProbeProvider;
 import com.thoughtworks.order.domain.Order;
+import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.services.OrderService;
@@ -13,6 +14,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrderApi {
@@ -47,7 +49,11 @@ public class OrderApi {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Order> getOrder(@Context OrderRepository orderRepository) {
 //        return orderRepository.findAllOfUser(user.getId());
-        return new ArrayList<>();
+        return Arrays.asList(new Order("Mary",
+                "beijing",
+                "7057867",
+                user.getId(),
+                Arrays.asList(new OrderItem("123", 2, 3.2))));
     }
 
 

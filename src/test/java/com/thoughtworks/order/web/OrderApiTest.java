@@ -131,5 +131,8 @@ public class OrderApiTest extends ApiSupport {
         //then
         assertThat(response.getStatus(), is(200));
 
+        List orders = response.readEntity(List.class);
+        assertThat(orders.size(), is(1));
+
     }
 }

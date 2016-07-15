@@ -56,7 +56,7 @@
 	3. --------------------------------------------------
 	4. should return 404 when no order in db --5 :: 5
 27. get all orders of some user
-	28. should return 200 when review all orders of some user (resource.get) --2
+	28. should return 200 when review all orders of some user (resource.get) --2 :: 10
 	29. should the response body contain at least one order info. (resource.get, record)  --15
 	29. should the response body contain uri info (resource.get) --2
  	20. should the response body contain name, address, phone, total\_price, created\_at info (resource.get, record) --5
