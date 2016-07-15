@@ -62,7 +62,7 @@
  	20. should the response body contain name, address, phone, total\_price info (resource.get, record) --5 :: 15
  	21. should the response body not contain order items info - 15 :: 13
 	3. --------------------------------------------------
-	29. should have tried to fetch all orders from database and should get one order when there's one order in database (repo.findAll) --2
+	29. should have tried to fetch all orders from database and should get one order when there's one order in database (repo.findAll) --2 :: 10
 	31. should the order's id is the same as the created one (resourc.post, repo.save, mapper, database, record; repo.findAll, mapper) --13
 	23. should the order's name, address, phone are the same as the created one (resourc.post, repo.save, mapper, record; repo.findAll, mapper) --13
 	27. should the order's total price is the sum of items' amounts (mapper, record; mapper-findAll) --2

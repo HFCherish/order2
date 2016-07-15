@@ -49,6 +49,16 @@ public class OrderRepositoryTest {
 
         assertThat(fetched.isPresent(), is(true));
         Order fetchedOrder = fetched.get();
+        verifyBaserOrderIsSame(order, fetchedOrder);
+
+        assertThat(fetchedOrder.getOrderItems().size(), is(1));
+        OrderItem orderItem = fetchedOrder.getOrderItems().get(0);
+        assertThat(orderItem.getProductId(), is(product.getId()));
+        assertThat(orderItem.getQuantity(), is(ORDER_ITEM_QUANTITY));
+        assertThat(orderItem.getAmount(), is(product.getPrice()));
+    }
+
+    public void verifyBaserOrderIsSame(Order order, Order fetchedOrder) {
         assertThat(fetchedOrder.getId(), is(order.getId()));
         assertThat(fetchedOrder.getName(), is(order.getName()));
         assertThat(fetchedOrder.getAddress(), is(order.getAddress()));
@@ -56,12 +66,6 @@ public class OrderRepositoryTest {
         assertThat(fetchedOrder.getUserId(), is(order.getUserId()));
         assertThat(fetchedOrder.getTotalPrice(), is(order.getTotalPrice()));
         assertThat(fetchedOrder.getCreatedAt(), is(notNullValue()));
-
-        assertThat(fetchedOrder.getOrderItems().size(), is(1));
-        OrderItem orderItem = fetchedOrder.getOrderItems().get(0);
-        assertThat(orderItem.getProductId(), is(product.getId()));
-        assertThat(orderItem.getQuantity(), is(ORDER_ITEM_QUANTITY));
-        assertThat(orderItem.getAmount(), is(product.getPrice()));
     }
 
     @Test
@@ -71,6 +75,8 @@ public class OrderRepositoryTest {
         List<Order> fetched = orderRepository.findAllOfUser(user.getId());
 
         assertThat(fetched.size(), is(1));
+        Order fetchedOrder = fetched.get(0);
+        verifyBaserOrderIsSame(order, fetchedOrder);
 
     }
 }

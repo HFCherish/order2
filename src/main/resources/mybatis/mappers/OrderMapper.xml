@@ -15,8 +15,9 @@
     </select>
     <select id="findAllOfUser" resultMap="records.order">
         SELECT
-        <include refid="columns.orderWithoutItems"/>
+        <include refid="columns.order"/>
         FROM orders O
+        LEFT JOIN orderItems OI ON OI.order_id = O.id
         WHERE O.user_id = #{userId}
     </select>
 </mapper>
