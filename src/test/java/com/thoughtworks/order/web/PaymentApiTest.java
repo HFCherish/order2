@@ -10,6 +10,7 @@ import com.thoughtworks.order.support.ApiSupport;
 import com.thoughtworks.order.support.ApiTestRunner;
 import static com.thoughtworks.order.support.TestHelper.*;
 import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -74,5 +75,6 @@ public class PaymentApiTest extends ApiSupport {
         assertThat((double)paymentInfo.get("amount"), is(payment.getAmount()));
         assertThat(paymentInfo.get("order_uri").toString(), containsString(orderUri));
         assertThat(paymentInfo.get("uri").toString(), containsString(paymentUri));
+        assertThat(paymentInfo.get("created_at"), is(notNullValue()));
     }
 }

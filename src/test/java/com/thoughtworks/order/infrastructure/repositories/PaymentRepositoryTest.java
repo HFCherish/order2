@@ -13,6 +13,7 @@ import javax.inject.Inject;
 import java.util.Optional;
 
 import static com.thoughtworks.order.support.TestHelper.*;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -52,5 +53,7 @@ public class PaymentRepositoryTest {
         Payment fetchePayment = fetched.get();
         assertThat(fetchePayment.getType(), is(payment.getType()));
         assertThat(fetchePayment.getAmount(), is(payment.getAmount()));
+        assertThat(fetchePayment.getOrderId(), is(payment.getOrderId()));
+        assertThat(fetchePayment.getPayAt(), is(notNullValue()));
     }
 }

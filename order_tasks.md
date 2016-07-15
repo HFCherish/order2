@@ -79,7 +79,7 @@
 34. get payment of some order
 	32. should return 200 when get payment (resourc.get) --10
 	33. should the response body include pay type info -- 15 :: 11
-	35. should the response body include amount, order_uri & payment uri (resource.get) --12
+	35. should the response body include amount, order_uri & payment uri (resource.get) --12 :: 36
 	3. --------------------------------------------------
 	33. should try to search that payment in database (repo.findByOrderId) --2
 	3. --------------------------------------------------
