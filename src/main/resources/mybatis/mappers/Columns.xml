@@ -26,4 +26,13 @@
         OI.amount as amount,
         OI.quantity as quantity
     </sql>
+
+    <sql id="orderWithoutItems">
+        O.id as orderId,
+        O.user_id as userId,
+        O.name as receiverName,
+        O.address as receiverAddr,
+        O.phone as receiverPhone,
+        O.created_at as createdAt
+    </sql>
 </mapper>

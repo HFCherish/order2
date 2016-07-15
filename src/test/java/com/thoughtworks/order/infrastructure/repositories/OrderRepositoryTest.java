@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Optional;
 
 import static com.thoughtworks.order.support.TestHelper.ORDER_ITEM_QUANTITY;
@@ -63,5 +64,13 @@ public class OrderRepositoryTest {
         assertThat(orderItem.getAmount(), is(product.getPrice()));
     }
 
+    @Test
+    public void should_get_all_orders() {
+        Order order = TestHelper.prepareOrder(user, product, orderRepository);
 
+        List<Order> fetched = orderRepository.findAllOfUser(user.getId());
+
+        assertThat(fetched.size(), is(1));
+
+    }
 }
