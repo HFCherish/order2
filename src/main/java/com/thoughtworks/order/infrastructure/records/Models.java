@@ -3,9 +3,11 @@ package com.thoughtworks.order.infrastructure.records;
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
+import com.thoughtworks.order.infrastructure.repositories.PaymentRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 import com.thoughtworks.order.infrastructure.repositories.impl.OrderRepositoryImpl;
+import com.thoughtworks.order.infrastructure.repositories.impl.PaymentRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.ProductRepositoryImpl;
 import com.thoughtworks.order.infrastructure.repositories.impl.UserRepositoryImpl;
 import com.thoughtworks.order.infrastructure.services.Impl.OrderServiceImpl;
@@ -60,6 +62,7 @@ public class Models extends AbstractModule {
         bind(UserRepository.class).to(UserRepositoryImpl.class);
         bind(ProductRepository.class).to(ProductRepositoryImpl.class);
         bind(OrderRepository.class).to(OrderRepositoryImpl.class);
+        bind(PaymentRepository.class).to(PaymentRepositoryImpl.class);
         bind(OrderService.class).to(OrderServiceImpl.class);
     }
 

@@ -1,9 +1,6 @@
 package com.thoughtworks.order.support;
 
-import com.thoughtworks.order.domain.Order;
-import com.thoughtworks.order.domain.OrderItem;
-import com.thoughtworks.order.domain.Product;
-import com.thoughtworks.order.domain.User;
+import com.thoughtworks.order.domain.*;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
@@ -106,6 +103,10 @@ public class TestHelper {
             put("pay_type", "CASH");
             put("amount", 100);
         }};
+    }
+
+    public static Payment paymentForTest(Order order) {
+        return new Payment(PayType.CASH, 100);
     }
 
 }
