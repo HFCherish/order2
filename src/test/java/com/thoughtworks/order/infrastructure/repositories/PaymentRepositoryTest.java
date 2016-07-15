@@ -51,6 +51,6 @@ public class PaymentRepositoryTest {
         assertThat(fetched.isPresent(), is(true));
         Payment fetchePayment = fetched.get();
         assertThat(fetchePayment.getType(), is(payment.getType()));
-
+        assertThat(fetchePayment.getAmount(), is(payment.getAmount()));
     }
 }
