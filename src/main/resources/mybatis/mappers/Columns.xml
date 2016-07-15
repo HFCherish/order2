@@ -35,4 +35,12 @@
         O.phone as receiverPhone,
         O.created_at as createdAt
     </sql>
+
+    <sql id="payment">
+        P.order_id as orderId,
+        P.type as payType,
+        P.amount as payAmount,
+        P.pay_at as payAt
+    </sql>
+
 </mapper>

@@ -16,6 +16,13 @@
         <result property="price" column="prodPrice"/>
     </resultMap>
 
+    <resultMap id="payment" type="com.thoughtworks.order.domain.Payment">
+        <result property="orderId" column="orderId" />
+        <result property="type" column="payType" />
+        <result property="amount" column="payAmount" />
+        <result property="payAt" column="payAt" />
+    </resultMap>
+
     <resultMap id="order" type="com.thoughtworks.order.domain.Order">
         <id property="id" column="orderId"/>
         <result property="userId" column="userId"/>

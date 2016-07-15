@@ -1,0 +1,3 @@
+ALTER TABLE payments MODIFY type VARCHAR(255);
+
+

@@ -71,9 +71,9 @@
 	4. should the response body contain created\_at info when get all orders successfully -- 2 :: 10
 	4. should return empty when no orders in db --10 :: 3
 29. create payment
-	30. should return 201 when pay (resource.post) --2
+	30. should return 201 when pay (resource.post) --2 ::
 	3. --------------------------------------------------
-	31. should try to save the payment info into database and should able to get that payment after pay (resourc.post, repo.findByOrderId) --20
+	31. should try to save the payment info into database and should able to get that payment after pay (resourc.post, repo.findByOrderId) --20 :: 20
 	32. should the type of that payment is as expected (resourc.post, repo.save, mapper, database, record; repo.findByOrderId, mapper) --13
 	33. should the amount of that payment is as expected (resourc.post, repo.save, mapper, record; mapper-findByOrderId) --8
 34. get payment of some order
@@ -111,6 +111,9 @@
 	8. pay_type
 	10. pay_at
 	11. pay_amount
+12. payTypes:
+	13. id
+	14. name (CASH, INCREDIT_CARD)
 
 	
 

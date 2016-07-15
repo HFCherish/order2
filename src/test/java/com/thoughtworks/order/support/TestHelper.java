@@ -106,7 +106,7 @@ public class TestHelper {
     }
 
     public static Payment paymentForTest(Order order) {
-        return new Payment(PayType.CASH, 100);
+        return new Payment(order.getId(), PayType.CASH, 100);
     }
 
 }

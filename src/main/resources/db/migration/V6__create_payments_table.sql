@@ -1,0 +1,9 @@
+CREATE TABLE payments (
+  order_id VARCHAR(255) UNIQUE,
+  amount DOUBLE,
+  type INTEGER,
+  pay_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE SET NULL
+);
+
+
