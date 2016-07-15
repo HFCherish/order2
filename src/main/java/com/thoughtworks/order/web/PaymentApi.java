@@ -1,6 +1,7 @@
 package com.thoughtworks.order.web;
 
 import com.thoughtworks.order.domain.Order;
+import com.thoughtworks.order.domain.PayType;
 import com.thoughtworks.order.domain.Payment;
 
 import javax.ws.rs.Consumes;
@@ -27,6 +28,6 @@ public class PaymentApi {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Payment getPay() {
-        return new Payment();
+        return new Payment(order.getId(), PayType.CASH, 100);
     }
 }

@@ -20,6 +20,7 @@ import org.junit.runner.RunWith;
 import javax.inject.Inject;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Response;
+import java.util.Map;
 
 @RunWith(ApiTestRunner.class)
 public class PaymentApiTest extends ApiSupport {
@@ -64,5 +65,8 @@ public class PaymentApiTest extends ApiSupport {
         Response response = target(paymentUri).request().get();
 
         assertThat(response.getStatus(), is(200));
+
+        Map paymentInfo = response.readEntity(Map.class);
+        assertThat(paymentInfo.get("pay_type"), is(payment.getType()));
     }
 }

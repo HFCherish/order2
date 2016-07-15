@@ -1,8 +1,13 @@
 package com.thoughtworks.order.domain;
 
+import com.thoughtworks.order.infrastructure.records.Record;
+import com.thoughtworks.order.web.jersey.Routes;
 import org.joda.time.DateTime;
 
-public class Payment {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Payment implements Record {
     private String orderId;
     private double amount;
     private PayType type;
@@ -22,7 +27,19 @@ public class Payment {
         return amount;
     }
 
-    public PayType getType() {
-        return type;
+    public String getType() {
+        return type.name();
+    }
+
+    @Override
+    public Map<String, Object> toRefJson(Routes routes) {
+        return new HashMap<String, Object>() {{
+            put("pay_type", type);
+        }};
+    }
+
+    @Override
+    public Map<String, Object> toJson(Routes routes) {
+        return toRefJson(routes);
     }
 }
