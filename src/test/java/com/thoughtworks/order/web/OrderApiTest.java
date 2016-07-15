@@ -138,12 +138,6 @@ public class OrderApiTest extends ApiSupport {
         List orders = response.readEntity(List.class);
         assertThat(orders.size(), is(1));
         Map orderInfo = (Map)orders.get(0);
-//        verifyBasicOrderInfoInResponse(order, ordersUri + "/" + order.getId(), orderInfo);
-        assertThat(orderInfo.get("uri").toString(), containsString(ordersUri));
-        assertThat(orderInfo.get("name").toString(), is("Mary"));
-        assertThat(orderInfo.get("address").toString(), is("beijing"));
-        assertThat(orderInfo.get("phone").toString(), is("7057867"));
-        assertThat((double)orderInfo.get("total_price"), is(6.4));
-        assertThat(orderInfo.get("order_items"), is(nullValue()));
+        verifyBasicOrderInfoInResponse(order, ordersUri + "/" + order.getId(), orderInfo);
     }
 }

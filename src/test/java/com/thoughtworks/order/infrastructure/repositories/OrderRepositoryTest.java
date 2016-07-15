@@ -73,7 +73,6 @@ public class OrderRepositoryTest {
         Order order = TestHelper.prepareOrder(user, product, orderRepository);
 
         List<Order> fetched = orderRepository.findAllOfUser(user.getId());
-
         assertThat(fetched.size(), is(1));
         Order fetchedOrder = fetched.get(0);
         verifyBaserOrderIsSame(order, fetchedOrder);
