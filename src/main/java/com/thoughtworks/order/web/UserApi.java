@@ -3,7 +3,6 @@ package com.thoughtworks.order.web;
 import com.thoughtworks.order.domain.User;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -22,8 +21,8 @@ public class UserApi {
     }
 
     @Path("orders")
-    public OrderApi getOrderApi() {
-        return new OrderApi(user);
+    public OrdersApi getOrderApi() {
+        return new OrdersApi(user);
     }
 
 

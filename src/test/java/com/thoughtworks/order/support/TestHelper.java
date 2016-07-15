@@ -101,4 +101,11 @@ public class TestHelper {
         return order;
     }
 
+    public static Map<String, Object> paymentJsonForTest() {
+        return new HashMap<String, Object>() {{
+            put("pay_type", "CASH");
+            put("amount", 100);
+        }};
+    }
+
 }
