@@ -77,7 +77,7 @@
 	32. should the type of that payment is as expected (resourc.post, repo.save, mapper, database, record; repo.findByOrderId, mapper) --13
 	33. should the amount of that payment is as expected (resourc.post, repo.save, mapper, record; mapper-findByOrderId) --8
 34. get payment of some order
-	32. should return 200 when get payment (resourc.get) --2
+	32. should return 200 when get payment (resourc.get) --10
 	3. --------------------------------------------------
 	33. should try to search that payment in database (repo.findByOrderId) --2
 	34. should the response body include creating date (resoure.get, mapper-findByOrderId, record) --5

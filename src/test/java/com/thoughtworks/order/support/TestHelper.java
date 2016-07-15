@@ -2,6 +2,7 @@ package com.thoughtworks.order.support;
 
 import com.thoughtworks.order.domain.*;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
+import com.thoughtworks.order.infrastructure.repositories.PaymentRepository;
 import com.thoughtworks.order.infrastructure.repositories.ProductRepository;
 import com.thoughtworks.order.infrastructure.repositories.UserRepository;
 
@@ -109,4 +110,9 @@ public class TestHelper {
         return new Payment(order.getId(), PayType.CASH, 100);
     }
 
+    public static Payment preparePayment(Order order, PaymentRepository paymentRepository) {
+        Payment payment = paymentForTest(order);
+        paymentRepository.save(payment);
+        return payment;
+    }
 }
