@@ -38,6 +38,6 @@ public class OrderApi {
                           @Context OrderRepository orderRepository) {
         return orderRepository.findById(orderId)
                 .map(order -> order)
-                .orElseThrow(() -> new WebApplicationException());
+                .orElseThrow(() -> new WebApplicationException(Response.Status.NOT_FOUND));
     }
 }

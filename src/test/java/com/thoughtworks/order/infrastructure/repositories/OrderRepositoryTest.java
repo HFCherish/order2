@@ -62,4 +62,6 @@ public class OrderRepositoryTest {
         assertThat(orderItem.getQuantity(), is(ORDER_ITEM_QUANTITY));
         assertThat(orderItem.getAmount(), is(product.getPrice()));
     }
+
+
 }

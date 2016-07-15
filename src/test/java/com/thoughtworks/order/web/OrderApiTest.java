@@ -1,7 +1,6 @@
 package com.thoughtworks.order.web;
 
 import com.thoughtworks.order.domain.Order;
-import com.thoughtworks.order.domain.OrderItem;
 import com.thoughtworks.order.domain.Product;
 import com.thoughtworks.order.domain.User;
 import com.thoughtworks.order.infrastructure.repositories.OrderRepository;
@@ -41,7 +40,7 @@ public class OrderApiTest extends ApiSupport {
 
     private User user;
     private Product product;
-    private String createUri;
+    private String ordersUri;
 
     @Override
     @Before
@@ -49,22 +48,22 @@ public class OrderApiTest extends ApiSupport {
         super.setUp();
         user = prepareUser(userRepository);
         product = prepareProduct(productRepository);
-        createUri = "users/" + user.getId() + "/orders";
+        ordersUri = "users/" + user.getId() + "/orders";
     }
 
     @Test
     public void should_create_order_successful() {
-        Response response = target(createUri)
+        Response response = target(ordersUri)
                 .request()
                 .post(Entity.json(orderJsonForTest(product.getId())));
 
         assertThat(response.getStatus(), is(201));
-        assertThat(response.getLocation().toString(), containsString(createUri));
+        assertThat(response.getLocation().toString(), containsString(ordersUri));
     }
 
     @Test
     public void should_400_when_create_order_given_zero_order_items() {
-        Response response = target(createUri)
+        Response response = target(ordersUri)
                 .request()
                 .post(Entity.json(orderJstonWithNoOrderItemsForTes()));
 
@@ -73,7 +72,7 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_400_when_create_order_given_invalid_product_id() {
-        Response response = target(createUri)
+        Response response = target(ordersUri)
                 .request()
                 .post(Entity.json(orderJsonForTest(NOT_EXIST_ID)));
 
@@ -84,7 +83,7 @@ public class OrderApiTest extends ApiSupport {
     public void should_get_one_order_successfully() {
         //given
         Order order = prepareOrder(user, product, orderRepository);
-        String getUri = createUri + "/" + order.getId();
+        String getUri = ordersUri + "/" + order.getId();
 
         //when
         Response response = target(getUri).request().get();
@@ -99,12 +98,25 @@ public class OrderApiTest extends ApiSupport {
         assertThat(orderInfo.get("phone").toString(), is(order.getPhone()));
         assertThat((double)orderInfo.get("total_price"), is(order.getTotalPrice()));
         assertThat(orderInfo.get("created_at"), is(notNullValue()));
+
         List orderItems = (List)orderInfo.get("order_items");
         assertThat(orderItems.size(), is(1));
         Map orderItem = (Map)orderItems.get(0);
         assertThat(orderItem.get("product_id").toString(), is(product.getId()));
         assertThat((int)orderItem.get("quantity"), is(ORDER_ITEM_QUANTITY));
         assertThat((double)orderItem.get("amount"), is(closeTo(product.getPrice(), 0.1)));
+    }
 
+    @Test
+    public void should_404_when_get_some_order_given_invalid_id() {
+        //given
+        Order order = prepareOrder(user, product, orderRepository);
+        String getUri = ordersUri + "/" + NOT_EXIST_ID;
+
+        //when
+        Response response = target(getUri).request().get();
+
+        //then
+        assertThat(response.getStatus(), is(404));
     }
 }
